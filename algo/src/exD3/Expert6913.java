@@ -30,6 +30,7 @@ public class Expert6913 {
                     if(map[i][j]==1) count++;
                 }
                 if(max == count) person++;
+                count=0;
             }
             System.out.println("#"+test_case+" "+person+" "+max);
 
