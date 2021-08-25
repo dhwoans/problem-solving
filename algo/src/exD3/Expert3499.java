@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Expert3499 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         String data = "3\n" +
                 "6\n" +
                 "A B C D E F\n" +
@@ -14,7 +15,6 @@ public class Expert3499 {
                 "JACK QUEEN KING ACE\n" +
                 "5\n" +
                 "ALAKIR ALEXSTRASZA DR-BOOM LORD-JARAXXUS AVIANA";
-        Scanner sc = new Scanner(System.in);
         sc = new Scanner(data);
         int T = sc.nextInt();
         for (int test_case = 1; test_case <= T; test_case++) {
@@ -33,11 +33,8 @@ public class Expert3499 {
             }
 
 
-
-
-
             //출력
-            System.out.print("#"+test_case+" ");
+            System.out.print("#" + test_case + " ");
             while (!deck2.isEmpty()) {
                 System.out.print(deck1.poll() + " ");
                 System.out.print(deck2.poll() + " ");
@@ -49,4 +46,5 @@ public class Expert3499 {
 
         }
 
-    }}
+    }
+}
