@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
  * 점	            c
  * 공통부분이 없음	    d
  */
-public class BOJ2527 {
+public class BOJ2527 {//풀이중
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //        String data =  "7 7 12 12 0 0 10 10";    //a
@@ -36,13 +36,13 @@ public class BOJ2527 {
                     X[num2++]= Integer.parseInt(st.nextToken());
                 }
             }
-
-            if((X[2]>X[1]||Y[2]>Y[1])||(X[0]>X[3]||Y[0]>Y[3])) {
-                System.out.println("d");
-            }else if((X[2]==X[1]&&Y[2]==Y[1])||(X[3]==X[0]&&Y[3]==Y[0])) {
+            if((X[2]==X[1]&&Y[2]==Y[1])||(X[3]==X[0]&&Y[3]==Y[0])||(X[2]==X[1]&&Y[3]==Y[0])||(X[3]==X[0]&&Y[2]==Y[1])) {
                 System.out.println("c");
-            }else if((X[2] == X[1]||Y[2]==Y[1])||(X[0]==X[3]||Y[0]==Y[3])) {
+            }else if((X[2] == X[1]||Y[2]==Y[1])||(X[0]==X[3]||Y[0]==Y[3])||(X[2]==X[1]||Y[0]==Y[3])||(X[0]==X[3]||Y[2]==Y[1])) {
                 System.out.println("b");
+            }else if((X[2]>X[1]||Y[2]>Y[1])||(X[0]>X[3]||Y[0]>Y[3])) {
+                System.out.println("d");
+
 
 
             }else{
