@@ -21,12 +21,14 @@ public class BOJ14696 {
             for (int j = 0; j < N; j++) {
                 A[4-Integer.parseInt(st.nextToken())]++;
             }
+
             st = new StringTokenizer(br.readLine());
             int M = Integer.parseInt(st.nextToken());
             int[] B = new int[4];
             for (int j = 0; j < M; j++) {
                 B[4-Integer.parseInt(st.nextToken())]++;
             }
+
             char answer ='D';
             for (int j = 0; j < 4; j++) {
                 if(A[j]==B[j]){
