@@ -15,24 +15,10 @@ public class BOJ9093 {
                 "I am happy today\n" +
                 "We want to win the first prize";
         sc=new Scanner(data);
-        int number= Integer.parseInt(sc.nextLine());
+        int T= Integer.parseInt(sc.nextLine());
 
-        String[] arr= new String[number];
+        for (int i = 0; i < T; i++) {
 
-        for(int i=0;i<number;i++) {
-            arr[i]=sc.nextLine();
-        }
-        for(int i=0;i<number;i++) {
-            String[] tmp = arr[i].split(" ");
-            for(int j=0;j<tmp.length;j++) {
-                int size = tmp[j].length()-1;
-                String s2 = "";
-                while(size>=0) {
-                    s2 = s2+tmp[j].charAt(size--);
-                }
-                System.out.print(s2+" ");
-            }
-            System.out.println();
         }
     }
 }
