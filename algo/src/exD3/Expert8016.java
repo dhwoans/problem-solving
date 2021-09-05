@@ -13,23 +13,21 @@ public class Expert8016 {
         int T = sc.nextInt();
 
 
-        int L=1;
-        int R=1;
-        for(int test_case=1;test_case<=T;test_case++){
-            long amount =0;
-            long amount2=0;
+        int L = 1;
+        int R = 1;
+        for (int test_case = 1; test_case <= T; test_case++) {
+            long amount = 0;
+            long amount2 = 0;
             int layer = sc.nextInt();
-            for(int i=1;i<layer;i++){
-                amount+= 4*i-2;
-                amount2+= 4*i+2;
+            for (int i = 1; i < layer; i++) {
+                amount += 4 * i - 2;
+                amount2 += 4 * i + 2;
             }
-            System.out.print("#"+test_case+" ");
-            System.out.print(L+amount+" ");
-            System.out.print(R+amount2+"\n");
+            System.out.print("#" + test_case + " ");
+            System.out.print(L + amount + " ");
+            System.out.print(R + amount2 + "\n");
 
         }
-
-
 
 
     }
