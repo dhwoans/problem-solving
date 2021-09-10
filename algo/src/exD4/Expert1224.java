@@ -16,68 +16,46 @@ public class Expert1224 {
             String str = br.readLine();
             StringBuilder sb = new StringBuilder();
             Stack<Character> sign = new Stack<>();
-            Stack<Character> bracket = new Stack<>();
+
 
             //후위식으로 변환
-            for (int i = 1; i < str.length()-1; i++) {
-
-                if (str.charAt(i) == '(') {
-                    while (str.charAt(i) != ')') {
-                        i++;
-                        char ch1 = str.charAt(i);
-                        switch (ch1) {
-                            case '+':
-                                if(bracket.isEmpty()){
-                                    bracket.push(ch1);
-                                }else{
-                                    while (!bracket.isEmpty()){
-                                        sb.append(bracket.pop());
-                                    }
-                                }
-                                break;
-                            case '*':
-                                while (!bracket.isEmpty()&&bracket.peek()=='*'){
-                                    sb.append(bracket.pop());
-                                }
-                                bracket.push(ch1);
-                                break;
-                            default:
-                                if(ch1==')')continue;
-                                sb.append(ch1);
-                                break;
-                        }
-                    }
-                    while (!bracket.isEmpty()) {
-                        sb.append(bracket.pop());
-                    }
-
-
-                } else {
-                    char ch = str.charAt(i);
-                    switch (ch) {
-                        case '+':
-                            if(sign.isEmpty()){
-                                sign.push(ch);
-                            }else{
-                                while (!sign.isEmpty()){
-                                    sb.append(sign.pop());
-                                }
-                            }
-                            break;
-                        case '*':
-                            while (!sign.isEmpty()&&sign.peek()=='*'){
+            for (int i = 0; i < str.length(); i++) {
+                char ch = str.charAt(i);
+                switch (ch){
+                    case '(':
+                        sign.push(ch);
+                        break;
+                    case '+':
+                        if(sign.isEmpty()){
+                            sign.push(ch);
+                        }else{
+                            while(sign.peek()!='('){
                                 sb.append(sign.pop());
                             }
                             sign.push(ch);
-                            break;
-                        default:
-                            sb.append(ch);
-                            break;
-                    }
+                        }
+                        break;
+                    case '*':
+
+                        while (!sign.isEmpty()&&sign.peek() == '*') {
+                            sb.append(sign.pop());
+                            if(sign.peek()=='('){
+                                break;
+                            }
+                        }
+                        sign.push(ch);
+                        break;
+                    case ')':
+                        while (sign.peek()!='('){
+                            sb.append(sign.pop());
+                        }
+                        sign.pop();
+                        break;
+                    default:
+                        sb.append(ch);
                 }
-            }
-            while (!sign.isEmpty()) {
-                sb.append(sign.pop());
+
+
             }
             //계산하기
             Stack<Integer> ch = new Stack();
