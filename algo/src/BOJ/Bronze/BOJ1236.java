@@ -1,4 +1,4 @@
-package BOJ;
+package BOJ.Bronze;
 
 import javax.lang.model.element.NestingKind;
 import java.io.BufferedReader;
@@ -18,6 +18,7 @@ public class BOJ1236 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
+        //배열담기
         char[][] map = new char[n][m];
         for (int i = 0; i <n ; i++) {
             String str=br.readLine();

@@ -1,31 +1,36 @@
 package exD3;
 
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Expert1234 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
-        String data = "3\n" +
-                "10 3 5\n" +
-                "10 7 5\n" +
-                "100 100 100\n";
-        br = new BufferedReader(new StringReader(data));
-        int T = Integer.parseInt(br.readLine());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = 10;
         for (int test_case = 1; test_case <= T; test_case++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            int n = Integer.parseInt(st.nextToken());
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
+            int N = Integer.parseInt(st.nextToken());
+            Stack<Integer> stack = new Stack<>();
+            String str = st.nextToken();
+            for (int j = 0; j < N; j++) {
+                if (!stack.isEmpty()&&stack.peek() == Character.getNumericValue(str.charAt(j))) {
+                    stack.pop();
+                } else {
+                    stack.push(Character.getNumericValue(str.charAt(j)));
+                }
 
-            int answer1 = a>b?b:a;
-            int answer2 = n-(a+b)<0?(a+b)-n:0;
+            }
+            System.out.print("#" + test_case+" ");
+            for (Integer n : stack) {
+                System.out.printf("%d",n);
+            }
+            System.out.println();
 
-            System.out.println("#"+test_case+" "+answer1+" "+answer2);
         }
-
     }
 }
