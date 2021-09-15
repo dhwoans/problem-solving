@@ -1,4 +1,4 @@
-package BOJ;
+package BOJ.Silver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.Scanner;
  * <p>
  * 넷째 줄에는 범위를 출력한다.
  */
-public class BOJ2108 {
+public class BOJ2108 {//풀이중
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -49,41 +49,29 @@ public class BOJ2108 {
         center = arr[N / 2];
         sb.append(center+"\n");
         //최빈값
-        int count=0;
-        int[] minus = new int[Math.abs(min - 1)];
-        int[] plus = new int[max+1];
+        int[] many = new int[8001];
+        for (int i : arr) {
+            many[i+4000]++;
+        }
 
+        int max3= Integer.MIN_VALUE;
+        for (int i : many) {
+            if(i>max3){
+                max3=i;
+            }
+        }
+        ArrayList<Integer> same = new ArrayList<>();
+        int answer = 0;
+        for (int i = 0; i < many.length; i++) {
+            if(many[i]==0)continue;
+            if(many[i]==max3){
+                same.add(i-4000);
 
-        for (int x : arr) {
-            if (x < 0) {
-                minus[Math.abs(x)]++;
-            } else {
-                plus[x]++;
             }
         }
-        for (int x :minus){
-            if(count<x){
-                count=x;
-            }
-        }
-        for(int x: plus){
-            if(count<x){
-                count=x;
-            }
-        }
-        ArrayList<Integer> mode = new ArrayList<>();
-        for(int x=0;x<minus.length;x++){
-            if(count==minus[x]){
-                mode.add(x*-1);
-            }
-        }
-        for(int x=0;x<plus.length;x++){
-            if(count==plus[x]){
-                mode.add(x);
-            }
-        }
-        mode.sort(Integer::compareTo);
-        sb.append(mode.get(1)+"\n");
+        same.sort((o1, o2) -> o1-o2);
+        answer= same.get(1);
+        sb.append(answer+"\n");
         //범위
             int rang = arr[N - 1] - arr[0];
             sb.append(rang);
