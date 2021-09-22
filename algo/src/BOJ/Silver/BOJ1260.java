@@ -29,9 +29,10 @@ public class BOJ1260 {
             map[v1][v2]=1;
             map[v2][v1]=1;
         }
-        BFS(start);
-        Arrays.fill(visit,false);
         DFS(start);
+        System.out.println();
+        Arrays.fill(visit,false);
+        BFS(start);
     }
     static  void BFS(int v){
         Queue<Integer> q = new LinkedList<>();
@@ -51,10 +52,13 @@ public class BOJ1260 {
        }
     }
     static void DFS(int v){
+        visit[v]=true;
+        System.out.print(v+" ");
         int x = map.length-1;
-        for (int i = 0; i < x; i++) {
-            if(map[x][i]==1&&!visit[i]){
+        for (int i = 1; i <= x; i++) {
+            if(map[v][i]==1&&!visit[i]){
                 DFS(i);
+
             }
         }
     }
