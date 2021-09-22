@@ -3,7 +3,7 @@ package BOJ;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class BOJ15663 {
+public class BOJ15663 {//풀이중
     static int n,r;
     static int arr[];
     static int input[];

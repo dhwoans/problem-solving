@@ -13,7 +13,7 @@ import java.util.Scanner;
 * 적은 아래로 한 칸 이동하며, 성이 있는 칸으로 이동한 경우에는 게임에서 제외된다. 모든 적이 격자판에서 제외되면 게임이 끝난다.
  *
 * */
-public class BOJ17135 {
+public class BOJ17135 {//풀이중
 
     static int n,m;
     static int r=3;

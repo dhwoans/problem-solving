@@ -2,7 +2,7 @@ package BOJ;
 
 import java.util.Scanner;
 
-public class BOJ16926 {
+public class BOJ16926 {//풀이중
     public static void main(String[] args) {
         String data="4 4 2\n" +
                 "1 2 3 4\n" +

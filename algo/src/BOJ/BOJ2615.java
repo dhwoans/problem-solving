@@ -3,7 +3,7 @@ package BOJ;
 
 import java.util.Scanner;
 
-public class BOJ2615 {
+public class BOJ2615 {//풀이중
     static int[][] map = new int[19][19];
     static int count;
 

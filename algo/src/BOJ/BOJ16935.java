@@ -2,7 +2,7 @@ package BOJ;
 
 import java.util.Scanner;
 
-public class BOJ16935 {
+public class BOJ16935 {//풀이중
     static int N, M, R, type;
     static int[][] arr;
     static int[][] arrcopy;

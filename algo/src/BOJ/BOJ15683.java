@@ -9,7 +9,7 @@ import java.util.Scanner;
  * <p>
  * CCTV의 최대 개수는 8개를 넘지 않는다.
  */
-public class BOJ15683 {
+public class BOJ15683 {//풀이중
     static int map[][];
 
     public static void main(String[] args) {
