@@ -1,7 +1,6 @@
 package BOJ.Silver;
 
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,23 +30,25 @@ public class BOJ7576 {
                 map[i][j] = Integer.parseInt(st.nextToken());
                 if (map[i][j] == 1) {
                     q.offer(new node(i, j));
-                    visit[i][j]=true;
+                    visit[i][j] = true;
                 }
             }
         }
         BFS();
-        int answer= Integer.MIN_VALUE;
-        out:for (int[] ints : map) {
+        //상태 확인
+        int answer = Integer.MIN_VALUE;
+        out:
+        for (int[] ints : map) {
             for (int a : ints) {
-                if(a==0){
-                    answer=-1;
+                if (a == 0) {
+                    answer = -1;
                     break out;
                 }
-                answer=Math.max(a-1, answer);
+                answer = Math.max(a - 1, answer);
             }
         }
-        if(answer==1){
-            answer=0;
+        if (answer == 1) {
+            answer = 0;
         }
         System.out.println(answer);
 
@@ -61,10 +62,10 @@ public class BOJ7576 {
                 int ny = z.y + dir[i][1];
 
                 if (nx < 0 || ny < 0 || nx >= c || ny >= r) continue;
-                if (map[nx][ny]==0&&!visit[nx][ny]){
-                    visit[nx][ny]=true;
-                    map[nx][ny]=map[z.x][z.y]+1;
-                    q.offer(new node(nx,ny));
+                if (map[nx][ny] == 0 && !visit[nx][ny]) {
+                    visit[nx][ny] = true;
+                    map[nx][ny] = map[z.x][z.y] + 1;
+                    q.offer(new node(nx, ny));
                 }
 
             }

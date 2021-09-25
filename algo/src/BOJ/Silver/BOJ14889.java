@@ -1,39 +1,32 @@
-package exD3;
+package BOJ.Silver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import java.util.StringTokenizer;
 
-public class Expert4012 {
+public class BOJ14889 {
     static int n;
     static int[][] map;
     static boolean[] visit;
     static int answer;
 
-
     public static void main(String[] args) throws IOException {
-       BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
-       int T = Integer.parseInt(br.readLine());
-        for (int test_case = 1; test_case <= T; test_case++) {
-            n = Integer.parseInt(br.readLine());
-            map = new int[n][n];
-            visit= new boolean[n];
-            answer=Integer.MAX_VALUE;
-            for (int i = 0; i < map.length; i++) {
-                StringTokenizer st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < map[i].length; j++) {
-                    map[i][j]=Integer.parseInt(st.nextToken());
-                }
+        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        n  =Integer.parseInt(br.readLine());
+        map = new int[n][n];
+        visit= new boolean[n];
+        answer=Integer.MAX_VALUE;
+        for (int i = 0; i < map.length; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < map[i].length; j++) {
+                map[i][j]=Integer.parseInt(st.nextToken());
             }
-            int[] team1 = new int[n / 2];
-            dfs(0,0);
-            System.out.println("#"+test_case+" "+answer);
         }
-
+        int[] team1 = new int[n / 2];
+        dfs(0,0);
+        System.out.println(answer);
     }
-
     static void dfs(int start ,int cnt){
         if(cnt==n/2){
             cal();
@@ -60,6 +53,6 @@ public class Expert4012 {
                 }
             }
         }
-        answer=Math.min(Math.abs(team1-team2),answer);
+         answer=Math.min(Math.abs(team1-team2),answer);
     }
 }
