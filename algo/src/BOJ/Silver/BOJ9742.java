@@ -8,40 +8,49 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ9742 {
-    static int[] input;
-    static char[] input1;
+    static char[] input;
     static boolean[] visit;
-    static int[] arr;
-    static ArrayList<int[]> answer;
+    static char[] arr;
+    static ArrayList<char[]> answer;
 
     public static void main(String[] args) throws IOException {
-        //테스트 케이스 받기
+
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        String str = st.nextToken();
-        int index = Integer.parseInt(st.nextToken());
-        input = new int[str.length()];
-        input1 = new char[str.length()];
-        visit = new boolean[str.length()];
-        arr = new int[str.length()];
-        answer = new ArrayList<>();
+        String s = "";
+        while ((s = br.readLine()) != null) {
 
-        for (int i = 0; i < input.length; i++) {
-            input[i] = Character.getNumericValue(str.charAt(i));
+
+            StringTokenizer st = new StringTokenizer(s);
+            String str = st.nextToken();
+            int index = Integer.parseInt(st.nextToken());
+            input = new char[str.length()];
+            visit = new boolean[str.length()];
+            arr = new char[str.length()];
+            answer = new ArrayList<>();
+
+            for (int i = 0; i < input.length; i++) {
+                input[i] = str.charAt(i);
+            }
+            DFS(0);
+            System.out.print(str + " " + index + " =" + " ");
+            if(answer.size()<index-1){
+                System.out.print("No permutation");
+                System.out.println();
+                continue;
+            }
+            for (int i : answer.get(index - 1)) {
+
+                System.out.print((char) i);
+            }
+            System.out.println();
+
         }
-        DFS(0);
-        System.out.print(str + " " + index + " =" + " ");
-        for (int i : answer.get(index - 1)) {
-            System.out.print(i);
-        }
-
-
     }
 
     static void DFS(int cnt) {
         if (cnt == input.length) {
-            int[] temp = Arrays.copyOf(arr, arr.length);
+            char[] temp = Arrays.copyOf(arr, arr.length);
             answer.add(temp);
 
             return;
