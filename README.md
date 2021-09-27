@@ -1,16 +1,16 @@
-#알고리즘(Algorithm)의 종류, 분류
-##기본 알고리즘 종류
-#Recursive Call Algorithm (재귀 함수)
-*Maximum value or Minimum value (최대값 또는 최소값 찾기) : 가장 큰 숫자를 기억해가며 진행함   
-*Euclid (유클리드 알고리즘) : 두 정수의 최대공약수(GCD)를 빠르게 구하기   
-*Factorial 
-*Fibonacci   
-*Sum   
+# 알고리즘(Algorithm)의 종류, 분류
+## 기본 알고리즘 종류
+# Recursive Call Algorithm (재귀 함수)
+-Maximum value or Minimum value (최대값 또는 최소값 찾기) : 가장 큰 숫자를 기억해가며 진행함   
+-Euclid (유클리드 알고리즘) : 두 정수의 최대공약수(GCD)를 빠르게 구하기   
+-Factorial 
+-Fibonacci   
+-Sum   
 
-#Sorting Algorithm (정렬 알고리즘) 
-*Selection Sort (선택 정렬)   
-*Bubble Sort (버블 정렬)   
-*Quick Sort (퀵 정렬)   
+# Sorting Algorithm (정렬 알고리즘) 
+-election Sort (선택 정렬)   
+-Bubble Sort (버블 정렬)   
+-Quick Sort (퀵 정렬)   
 -Insertion Sort (삽입 정렬)   
 -Shell Sort (쉘 정렬)   
 -Heap Sort (힙 정렬 )   
