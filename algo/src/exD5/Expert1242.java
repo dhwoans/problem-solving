@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Expert1242 {
+public class Expert1242 {//풀이중
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
@@ -21,7 +21,7 @@ public class Expert1242 {
             for (int i = 0; i < r; i++) {
                 String str = br.readLine();
 
-                str = str.replace("0", "");
+                str = str.replace("0", "");//0없애자그냥
                 if (!str.equals("")) {
                     if (!arr.isEmpty() && arr.get(count - 1).equals(str)) {
                         continue;
@@ -95,46 +95,13 @@ public class Expert1242 {
                 }
 
             }
-        arr2.add(sb.toString());
+        arr2.add(sb.toString());//ㅗㅗㅗ
         }
 
         //2진수 암호 해독
-        ArrayList<Integer> integers = new ArrayList<>();
-        String[] arr3 = {"3211", "2221", "2122", "1411", "1132", "1231", "1114", "1312", "1213", "3112"};
-        new ArrayList<Integer>();
-        for (int i = 0; i < arr2.size(); i++) {
+        binary(arr2);
 
-            String str3 = arr2.get(i);
-            int ratios = str3.length() / 56;
 
-            for (int j = 0; j < str3.length(); j += 7 * ratios) {
-                String part = str3.substring(j, j + 7 * ratios);
-                int count2 = 0;
-                int flag = 0;
-                StringBuilder sb2 = new StringBuilder();
-                //비율 알아보기
-                for (int z = 0; z < 7 * ratios; z++) {
-                    if (str3.charAt(z) == flag) {
-                        count2++;
-
-                    } else {
-                        sb2.append(count2 / ratios);
-                        count2 = 1;
-                        if (flag == 0) {
-                            flag = 1;
-                        } else {
-                            flag = 0;
-                        }
-
-                    }
-                    if (z == 7 * ratios - 1) {
-                        sb2.append(count2 / ratios);
-                    }
-
-                }
-                integers.add(Arrays.asList(arr3).indexOf(sb2));
-
-            }
 
         }
         //해독하기
@@ -161,5 +128,10 @@ public class Expert1242 {
         }
         System.out.println("#" + test_case + " " + value);
     }
+    static void binary(ArrayList<String> arr){
+        String[] arr3 = {"3211", "2221", "2122", "1411", "1132", "1231", "1114", "1312", "1213", "3112"};]
+        //뒤에서 부터 자르기
+
+    }
 }
-}
+
