@@ -27,14 +27,14 @@
 
 # Graph Algorithm (그래프 알고리즘)
 - Graph Traversal (그래프 순회)   
- - BFS(Breath First Search) (깊이 우선 검색)
- - DFS(Depth First Search) (넓이 우선 검색)
+  - BFS(Breath First Search) (깊이 우선 검색)
+  - DFS(Depth First Search) (넓이 우선 검색)
 - Graph Search (그래프 탐색,검색)
 - MST : Minimum Spanning Tree (최소신장 트리)  
- - Kruscal’s algoritm (크루스 칼의 알고리즘)   
- - Prim algorithm (프라임 알고리즘) 
+  - Kruscal’s algoritm (크루스 칼의 알고리즘)   
+  - Prim algorithm (프라임 알고리즘) 
 - Shortest Path (최단경로 알고리즘)   
- - Dijkstra (다익스트라)
+  - Dijkstra (다익스트라)
  
 # String Matching Algorihm (문자열 검색 알고리즘)
 긴 텍스트에서 짧은 패턴 문자열이 어디에 있는지를 찾는 것
