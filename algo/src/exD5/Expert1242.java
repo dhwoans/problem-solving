@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Expert1242 {//풀이중
@@ -105,31 +104,31 @@ public class Expert1242 {//풀이중
 
         }
         //해독하기
-        int x = 0;
-        for (int i = 0; i < integers.size(); i++) {
-            int even = 0;
-            int odd = 0;
-
-            int answer = 0;
-            if (i == 7 + 8 * x) {
-                x++;
-                answer = odd * 3 + even + integers.get(i);
-                if (answer % 10 == 0) {
-                    value += integers.get(i);
-                }
-            }
-            if (i % 2 == 1) {
-                odd += integers.get(i);
-            } else
-                even += integers.get(i);
-            for (int j = 0; j < 8; j++) {
-
-            }
-        }
-        System.out.println("#" + test_case + " " + value);
+//        int x = 0;
+//        for (int i = 0; i < integers.size(); i++) {
+//            int even = 0;
+//            int odd = 0;
+//
+//            int answer = 0;
+//            if (i == 7 + 8 * x) {
+//                x++;
+//                answer = odd * 3 + even + integers.get(i);
+//                if (answer % 10 == 0) {
+//                    value += integers.get(i);
+//                }
+//            }
+//            if (i % 2 == 1) {
+//                odd += integers.get(i);
+//            } else
+//                even += integers.get(i);
+//            for (int j = 0; j < 8; j++) {
+//
+//            }
+//        }
+//        System.out.println("#" + test_case + " " + value);
     }
     static void binary(ArrayList<String> arr){
-        String[] arr3 = {"3211", "2221", "2122", "1411", "1132", "1231", "1114", "1312", "1213", "3112"};]
+        String[] arr3 = {"3211", "2221", "2122", "1411", "1132", "1231", "1114", "1312", "1213", "3112"};
         //뒤에서 부터 자르기
 
     }
