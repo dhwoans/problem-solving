@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 /**
  * 5525.IOIOI
+ *
  * 간단한 문제인줄 알았는데
  * substring으로 잘라서 하면 50점밖에 못얻는다
  *
