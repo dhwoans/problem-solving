@@ -14,34 +14,25 @@ import java.util.StringTokenizer;
  */
 public class BOJ2493 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Stack<Integer[]> arr = new Stack<>();
         int T = Integer.parseInt(br.readLine());
-        int[] arr = new int[T];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        StringBuilder sb = new StringBuilder();
-        //배열에 담기
-        for (int i = 0; i < arr.length ; i++) {
-           arr[i]=Integer.parseInt(st.nextToken());
-        }
-        //정보 모으기
-        Stack<Integer[]> stack = new Stack<>();
-        stack.push(new Integer[]{Integer.MAX_VALUE,Integer.MAX_VALUE});
-        int start = 0;
-        for (int i = arr.length-1; i >= 0; i--) {
-            if(start<=arr[i]){
-                start=arr[i];
-                stack.push(new Integer[]{i,arr[i]});
+
+        for (int i = 0; i < T; i++) {
+            int n =Integer.parseInt(st.nextToken());
+            while (!arr.isEmpty()){
+                if(arr.peek()[1]>=n){
+                    System.out.print(arr.peek()[0]+" ");
+                    break;
+                }
+                arr.pop();
             }
-        }
-        int num =0;
-        for (int i = 0; i < arr.length; i++) {
-            if(i<=stack.peek()[0]){
-                sb.append(num).append(" ");
-            }else{
-               num=stack.pop()[0]+1;
-               sb.append(num).append(" ");
+            if (arr.isEmpty()) {
+                System.out.print("0 ");
             }
+            arr.push(new Integer[] { i+1, n });
         }
-        System.out.println(sb);
+
     }
 }
