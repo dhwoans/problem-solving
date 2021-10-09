@@ -62,7 +62,7 @@ public class BOJ10282 {
                 node next= arr.get(z.to).get(i);
                 if(visit[next.to]>visit[z.to]+next.value){
                     visit[next.to]=visit[z.to]+next.value;
-                    pq.add(next);
+                    pq.add(new node(next.to,visit[next.to]));
                 }
             }
         }
