@@ -7,6 +7,13 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
+/**
+ * 1316.그룹 단어 체커
+ *
+ * io가 까다롭다
+ *
+ * 요구사항 꼼꼼히 살피자자
+*/
 public class BOJ5430 {
     static Deque<Integer> dq;
 
