@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 public class BOJ1865 {
     static final int INF=987654321;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         int T =Integer.parseInt(br.readLine());
