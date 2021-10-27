@@ -19,14 +19,14 @@ public class BOJ3190 {
         StringTokenizer st;
 
         //맵정보 입력
-        int[][] map = new int[N][N];
+        int[][] map = new int[N+2][N+2];
         for (int i = 0; i < K; i++) {
             st = new StringTokenizer(br.readLine());
             int y = Integer.parseInt(st.nextToken());//행
             int x = Integer.parseInt(st.nextToken());//열
 
             //사과는 2로 표시
-            map[x - 1][y - 1] = 2;
+            map[y][x] = 2;
         }
 
         //명령 저장
@@ -44,31 +44,33 @@ public class BOJ3190 {
         }
         //시작
         int turn = 0;
-        while (true) {
             snake s = new snake();
+        while (true) {
             turn++;
-            //명령확인 확인
-            if (Integer.parseInt(com.peek()[0]) == turn) {
-                s.dir(com.poll()[2]);
+            //명령확인
+            if (!com.isEmpty()&&Integer.parseInt(com.peek()[0]) == turn) {
+                s.dir(com.poll()[1]);
             }
             //한칸앞으로
             s.go();
+            if (s.x == 0 || s.y == 0 || s.x == map.length-1 || s.y == map.length-1) {
+
+                break;
+            }
             //시과를 만나면 먹는다
             if (map[s.x][s.y] == 2) {
                 s.eat();
-            } else {
-                s.status();
             }
+
+            s.status();
+
             //충돌확인
             //벽에 부딪힘
-            if (s.x < 0 || s.y < 0 || s.x >= map.length || s.y >= map.length) {
-                break;
-            }
             if (s.check()) {
                 break;
             }
         }
-        System.out.println(turn);
+        System.out.println(turn+1);
 
     }
 }
@@ -77,14 +79,14 @@ class snake {
     int x;
     int y;
     int len;
-    Queue que;
+    List<int[]> que;
     int head;
 
     public snake() {
-        x = 0;
-        y = 0;
+        x = 1;
+        y = 1;
         len = 1;
-        que = new LinkedList<Integer[]>();
+        que = new ArrayList<int[]>();
         head = 2;
     }
 
@@ -92,10 +94,11 @@ class snake {
      * 이동하기
      */
     public void go() {
-        que.add(new Integer[]{x, y});
-        int deltas[][] = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};//0상,1하,2좌,3우
+        que.add(new int[]{x, y});
+        int deltas[][] = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};//0상,1하,2좌,3우
         x += deltas[head][0];
         y += deltas[head][1];
+        que.add(new int[]{x, y});
     }
     //L==왼쪽 D==오른쪽
 
@@ -110,30 +113,30 @@ class snake {
         switch (head) {
             case 0:
                 if (dir.equals("L")) {
-                    head = 2;
-                } else {
                     head = 3;
+                } else {
+                    head = 2;
                 }
                 break;
             case 1:
                 if (dir.equals("L")) {
-                    head = 3;
-                } else {
                     head = 2;
+                } else {
+                    head = 3;
                 }
                 break;
             case 2:
                 if (dir.equals("L")) {
-                    head = 1;
-                } else {
                     head = 0;
+                } else {
+                    head = 1;
                 }
                 break;
             case 3:
                 if (dir.equals("L")) {
-                    head = 0;
-                } else {
                     head = 1;
+                } else {
+                    head = 0;
                 }
                 break;
         }
@@ -143,6 +146,7 @@ class snake {
      * 몸 길이 늘리기
      */
     public void eat() {
+
         len++;
     }
 
@@ -151,23 +155,21 @@ class snake {
      */
     public void status() {
         if (que.size() > len) {
-            while (que.size() == len) {
-                que.poll();
+            while (que.size() != len) {
+                que.remove(0);
             }
         }
     }
 
+    /**
+     * 배열로 담으면 set으로 중복체크를 못한다.
+     * 충돌 확인하기
+     * @return
+     */
     public boolean check() {
         boolean flag = false;
-        if (que.size() < 3) return flag;
-        Set set = new HashSet<Integer[]>();
-        while (!que.isEmpty()) {
-            set.add(que.poll());
-        }
-        if (set.size() == que.size()) {
-            return flag;
-        } else {
-            return true;
-        }
+        //뱀길이가 3이하면 부딫힐 일이 없다
+        int arr = que.get(0)[0];
+        return flag;
     }
 }

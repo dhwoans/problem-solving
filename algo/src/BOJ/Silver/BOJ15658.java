@@ -53,59 +53,53 @@ public class BOJ15658 {//풀이중- 시간초과
 
             }
         }
-        DFS(0);
+        DFS(0,num[0]);
         System.out.println(max);
         System.out.println(min);
     }
 
-    static void DFS(int cnt){
+    static void DFS(int cnt,int sum){
         if(cnt == T-1){
-            cal();
+            max=Math.max(sum,max);
+            min=Math.min(sum,min);
             return;
         }
         for (int i = 0; i < sign.length; i++) {
             if(visit[i])continue;
             visit[i]=true;
-            arr[cnt]=sign[i];
-            DFS(cnt+1);
+            sum=cal(sign[i],cnt,sum);
+            DFS(cnt+1,sum);
             visit[i]=false;
-        }
-    }
-
-    static void cal(){
-        for (int i = num.length-1; i >= 0; i--) {
-            stack.push(num[i]);
-        }
-        for (int i = 0; i < arr.length; i++) {
-            switch (arr[i]){
-                case '+':
-                    int num1= (int) stack.pop();
-                    int num2= (int) stack.pop();
-
-                    stack.push(num1+num2);
-                    break;
-                case '-':
-                    int num3= (int) stack.pop();
-                    int num4= (int) stack.pop();
-
-                    stack.push(num3-num4);
-                    break;
-                case '*':
-                    int num5= (int) stack.pop();
-                    int num6= (int) stack.pop();
-
-                    stack.push(num5*num6);
-                    break;
-                case '/':
-                    int num7= (int) stack.pop();
-                    int num8= (int) stack.pop();
-
-                    stack.push(num7/num8);
-                    break;
+            if(sign[i]=='+'){
+                sum=cal('-',cnt,sum);
+            }else if(sign[i]=='-'){
+                sum=cal('+',cnt,sum);
+            }else if(sign[i]=='*'){
+                sum=cal('/',cnt,sum);
+            }else if(sign[i]=='/'){
+                sum=cal('*',cnt,sum);
             }
         }
-        max = Math.max(max, (Integer) stack.peek());
-        min = Math.min(min, (Integer) stack.peek());
-        stack.clear();
     }
+
+    static int cal(char ch,int cnt,int sum){
+            int temp=0;
+            switch (ch){
+                case '+':
+                    temp= sum+num[cnt+1];
+                    break;
+                case '-':
+                    temp= sum-num[cnt+1];
+                    break;
+                case '*':
+                    temp= sum*num[cnt+1];
+                    break;
+                case '/':
+                    temp= sum/num[cnt+1];
+                    break;
+            }
+            return temp;
+        }
+
+
 }
