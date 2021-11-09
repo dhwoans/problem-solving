@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
  *
  * 다익스트라 문제->o
  */
-public class BOJ1504_dij {
+public class BOJ1504_Dij {
     static ArrayList<ArrayList<node>> arr;
     static int n;
     static int visit[];

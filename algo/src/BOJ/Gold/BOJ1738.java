@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ * 1738.골목길
+ *
+ * 루트뽑기
+ *
+ */
 public class BOJ1738 {
     static int N,M;
     static ArrayList<ArrayList<node>> arr;
