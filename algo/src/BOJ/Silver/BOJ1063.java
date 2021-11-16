@@ -1,41 +1,56 @@
 package BOJ.Silver;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ1063 {//풀이중
+/**
+ * 1063.킹
+ *
+ * 열 index 다른거 주의
+ */
+public class BOJ1063 {
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         String king = st.nextToken();
         String dol = st.nextToken();
-        int num =Integer.parseInt(st.nextToken());
+        int command = Integer.parseInt(st.nextToken());
 
-        //좌표로 바꿈
-        int[] kingpos = new int[2];
-        int[] dolpos = new int[2];
-
-        kingpos[0] = (king.charAt(0)-'A')+1;
-        kingpos[1] = king.charAt(1)-'0';
-
-        dolpos[0]  = (dol.charAt(0)-'A')+1;
-        dolpos[1]  =  dol.charAt(1)-'0';
-
-        //방향이동
-        for (int i = 0; i < num; i++) {
-            String command = br.readLine();
-            //대각선일경우
-            if(command.length()==2){
-                for (int j = 0; j < 2; j++) {
-                    char ch = command.charAt(j);
-
-                }
+        //
+        for (int i = 0; i < command; i++) {
+            String dir = br.readLine();
+            //대각선일때
+            if(dir.length()>1){
+                String ch = Character.toString(dir.charAt(0));
+                dir = Character.toString(dir.charAt(1));
+                pos(ch,king);
             }
+                pos(dir,king);
 
         }
 
     }
+
+    private static void pos(String ch,String str) {
+        switch (ch){
+            case "R":
+
+                break;
+            case "L":
+                break;
+            case "B":
+                break;
+            case "T":
+                break;
+
+        }
+        //위
+        //아래
+        //왼
+        //좌
+    }
+
 }
