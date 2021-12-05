@@ -3,7 +3,18 @@ package programmers;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
+/**
+ * @packageName : programmers
+ * @fileName : 기능개발
+ * @date : 2021. 12. 05.
+ * @language : JAVA
+ * @classification : stack
+ * @time_limit : 2sec
+ * @required_time : 00:40 ~ 01:00
+ * @submissions : 1
+ * @description
+ *
+ **/
 public class 기능개발 {
     public static void main(String[] args) {
         solution(new int[]{95,90,99,99,80,99}, new int[]{1,1,1,1,1,1}).stream().forEach(Object-> System.out.println(Object));
