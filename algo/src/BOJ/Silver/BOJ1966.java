@@ -20,13 +20,18 @@ import java.util.*;
 public class BOJ1966 {
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
+
         int T = Integer.parseInt(br.readLine());
+
         for (int i = 0; i < T; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
+            st = new StringTokenizer(br.readLine());
             int n = Integer.parseInt(st.nextToken());
             int target =Integer.parseInt(st.nextToken());// 몇번째 뽑히는지 알고 싶은 문서
+
             //문서 입력 받기
-            PriorityQueue<int[]> que = new PriorityQueue<>((o1, o2) -> o2[1]-o1[1]);
+            PriorityQueue<int[]> que = new PriorityQueue<>((o1, o2) -> (o2[1] - o1[1]));
             Queue<int[]> arr = new LinkedList<>();
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
@@ -37,7 +42,8 @@ public class BOJ1966 {
             int count =1;
             while(true){
                 if(que.peek()[1]==arr.peek()[1]){
-                    if(que.peek()[0]==target){
+                    if(arr.peek()[0]==target){
+                        sb.append(count+"\n");
                         break;
                     }else{
                         que.poll();
@@ -48,8 +54,7 @@ public class BOJ1966 {
                     arr.add(arr.poll());
                 }
             }
-            System.out.println(count);
-
         }
+            System.out.println(sb);
     }
 }

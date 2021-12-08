@@ -1,6 +1,7 @@
 package programmers;
 
-import java.util.HashMap;
+import java.util.Arrays;
+
 
 public class 전화번호_목록 {
     public static void main(String[] args) {
@@ -8,14 +9,12 @@ public class 전화번호_목록 {
         System.out.println(answer);
     }
     public static boolean solution(String[] phone_book) {
-        boolean answer = true;
-        HashMap<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < phone_book.length; i++) {
-            map.put(phone_book[i],i);
+        Arrays.sort(phone_book);
+        for (int i = 0; i < phone_book.length - 1; i++){
+            if (phone_book[i + 1].startsWith(phone_book[i])){
+                return false;
+            }
         }
-
-
-
-        return answer;
+        return true;
     }
 }
