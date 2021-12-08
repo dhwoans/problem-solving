@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f248f3b-31a7-4590-a300-09dec6a1e605" name="Default Changelist" comment="21-12-06">
-      <change afterPath="$PROJECT_DIR$/algo/src/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+    <list default="true" id="7f248f3b-31a7-4590-a300-09dec6a1e605" name="Default Changelist" comment="2021-12-09">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +40,11 @@
     <property name="extract.method.default.visibility" value="private" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.BOJ1966">
     <configuration name="기능개발" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -146,6 +150,7 @@
       <workItem from="1637984584445" duration="7275000" />
       <workItem from="1638141567486" duration="43783000" />
       <workItem from="1638991409348" duration="1505000" />
+      <workItem from="1638995048194" duration="1117000" />
     </task>
     <task id="LOCAL-00001" summary="21-09-18">
       <created>1631966446154</created>
@@ -252,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638791316029</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="2021-12-09">
+      <created>1638995147100</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1638995147100</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +293,8 @@
     <MESSAGE value="21-12-5" />
     <MESSAGE value="21-12-05" />
     <MESSAGE value="21-12-06" />
-    <option name="LAST_COMMIT_MESSAGE" value="21-12-06" />
+    <MESSAGE value="2021-12-09" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021-12-09" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -342,7 +355,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/algo/src/BOJ/Silver/BOJ1966.java</url>
-          <line>31</line>
+          <line>36</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
