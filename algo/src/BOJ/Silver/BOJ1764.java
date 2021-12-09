@@ -1,4 +1,4 @@
-package BOJ;
+package BOJ.Silver;
 
 
 import java.io.BufferedReader;
@@ -7,24 +7,17 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 /**
- * 1764.듣보잡
- *
- * 탐색문제
- *
- * 알파벳을 인덱스로 이용
- *
- * arraylist 만들어서 탐색 -> 시간 초과
- *      *   *   *
- * 단순하게 생각하자
- *
- * 배열2개 만들어서 탐색-> 시간 초과
- *     *    *   *
- * set을 이용하자
- * HashSet 시간 복잡도
- * add         :   O(1)
- * contains    :   O(1)
- * next        :   o(h/n)
- */
+ * @packageName : BOJ.Silver
+ * @fileName : BOJ_1763_듣보잡
+ * @date : 2021. 09. 30.
+ * @language : JAVA
+ * @classification : hash
+ * @time_limit : 2sec
+ * @required_time : 00:40 ~ 01:22
+ * @submissions : 1
+ * @description
+ * map을 이용
+ **/
 public class BOJ1764 {
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
