@@ -3,11 +3,7 @@ package Leetcode.medium;
 public class Word_Search {
     static boolean[][] visit;
     static boolean flag;
-    public static void main(String[] args) {
-        char[][] board={{'A','B','C','E'},{'S','F','E','S'},{'A','D','E','E'}};
-        String word= "ABCESEEEFS";
-        System.out.println(exist(board, word));
-    }
+
 
     public static boolean exist(char[][] board, String word) {
         flag=false;
