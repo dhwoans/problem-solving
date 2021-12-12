@@ -37,8 +37,8 @@ public class BOJ1654 {
 
         end++;
 
-        //이분 탐색(upper)
-        while (start<end){
+
+        while (start<end){                      //이분 탐색(upper)
             cable=0;
             mid = (start+end)/2;
 
