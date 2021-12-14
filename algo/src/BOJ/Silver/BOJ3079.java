@@ -19,24 +19,35 @@ import java.util.StringTokenizer;
  **/
 public class BOJ3079 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(br.readLine());                // 입국심사대
-        int M = Integer.parseInt(br.readLine());                // 대기인원
-        int min = 0;
-        int max = 0;
+        int N = Integer.parseInt(st.nextToken());                // 입국심사대
+        int M = Integer.parseInt(st.nextToken());                // 대기인원
+        long min = 0;
+        long max = 0;
         int[] arr = new int[N];
 
         for (int i = 0; i < N; i++) {
-            arr[i]= Integer.parseInt(br.readLine());
+            arr[i] = Integer.parseInt(br.readLine());
         }
 
         Arrays.sort(arr);
-        max =arr[arr.length-1]*M;
+        max = (long) arr[arr.length - 1] * M;
 
-        while(min<max){
-            int
+        while (min <= max) {                                      // lower bound
+            long mid = (min + max) / 2;
+            long sum = 0;
+
+            for (int i : arr) {
+                sum += mid / i;
+            }
+
+            if (sum < M) {
+                min = mid + 1;
+            } else {
+                max = mid - 1;
+            }
         }
-
+        System.out.println(min);
     }
 }
