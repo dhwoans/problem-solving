@@ -142,15 +142,16 @@ public class Expert1953 {
         }
         return false;
     }
-}
 
-class pipe {
-    int x;
-    int y;
+    static class pipe {
+        int x;
+        int y;
 
 
-    pipe(int x, int y) {
-        this.x = x;
-        this.y = y;
+        pipe(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
+

@@ -73,103 +73,105 @@ public class BOJ3190 {
         System.out.println(turn+1);
 
     }
-}
 
-class snake {
-    int x;
-    int y;
-    int len;
-    List<int[]> que;
-    int head;
+    static class snake {
+        int x;
+        int y;
+        int len;
+        List<int[]> que;
+        int head;
 
-    public snake() {
-        x = 1;
-        y = 1;
-        len = 1;
-        que = new ArrayList<int[]>();
-        head = 2;
-    }
-
-    /**
-     * 이동하기
-     */
-    public void go() {
-        que.add(new int[]{x, y});
-        int deltas[][] = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};//0상,1하,2좌,3우
-        x += deltas[head][0];
-        y += deltas[head][1];
-        que.add(new int[]{x, y});
-    }
-    //L==왼쪽 D==오른쪽
-
-    /**
-     * 방향 전환하기
-     *
-     * @param dir
-     */
-    public void dir(String dir) {
-
-
-        switch (head) {
-            case 0:
-                if (dir.equals("L")) {
-                    head = 3;
-                } else {
-                    head = 2;
-                }
-                break;
-            case 1:
-                if (dir.equals("L")) {
-                    head = 2;
-                } else {
-                    head = 3;
-                }
-                break;
-            case 2:
-                if (dir.equals("L")) {
-                    head = 0;
-                } else {
-                    head = 1;
-                }
-                break;
-            case 3:
-                if (dir.equals("L")) {
-                    head = 1;
-                } else {
-                    head = 0;
-                }
-                break;
+        public snake() {
+            x = 1;
+            y = 1;
+            len = 1;
+            que = new ArrayList<int[]>();
+            head = 2;
         }
-    }
 
-    /**
-     * 몸 길이 늘리기
-     */
-    public void eat() {
+        /**
+         * 이동하기
+         */
+        public void go() {
+            que.add(new int[]{x, y});
+            int deltas[][] = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};//0상,1하,2좌,3우
+            x += deltas[head][0];
+            y += deltas[head][1];
+            que.add(new int[]{x, y});
+        }
+        //L==왼쪽 D==오른쪽
 
-        len++;
-    }
+        /**
+         * 방향 전환하기
+         *
+         * @param dir
+         */
+        public void dir(String dir) {
 
-    /**
-     * 현재위치 확인하기
-     */
-    public void status() {
-        if (que.size() > len) {
-            while (que.size() != len) {
-                que.remove(0);
+
+            switch (head) {
+                case 0:
+                    if (dir.equals("L")) {
+                        head = 3;
+                    } else {
+                        head = 2;
+                    }
+                    break;
+                case 1:
+                    if (dir.equals("L")) {
+                        head = 2;
+                    } else {
+                        head = 3;
+                    }
+                    break;
+                case 2:
+                    if (dir.equals("L")) {
+                        head = 0;
+                    } else {
+                        head = 1;
+                    }
+                    break;
+                case 3:
+                    if (dir.equals("L")) {
+                        head = 1;
+                    } else {
+                        head = 0;
+                    }
+                    break;
             }
         }
-    }
 
-    /**
-     * 배열로 담으면 set으로 중복체크를 못한다.
-     * 충돌 확인하기
-     * @return
-     */
-    public boolean check() {
-        boolean flag = false;
-        //뱀길이가 3이하면 부딫힐 일이 없다
-        int arr = que.get(0)[0];
-        return flag;
+        /**
+         * 몸 길이 늘리기
+         */
+        public void eat() {
+
+            len++;
+        }
+
+        /**
+         * 현재위치 확인하기
+         */
+        public void status() {
+            if (que.size() > len) {
+                while (que.size() != len) {
+                    que.remove(0);
+                }
+            }
+        }
+
+        /**
+         * 배열로 담으면 set으로 중복체크를 못한다.
+         * 충돌 확인하기
+         *
+         * @return
+         */
+        public boolean check() {
+            boolean flag = false;
+            //뱀길이가 3이하면 부딫힐 일이 없다
+            int arr = que.get(0)[0];
+            return flag;
+        }
     }
 }
+

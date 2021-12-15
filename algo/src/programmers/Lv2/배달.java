@@ -69,19 +69,20 @@ public class 배달 {
             }
         }
     }
-}
-class node implements Comparable<node> {
-    int to;
-    int value;
 
-    public node(int to, int value) {
-        this.to = to;
-        this.value = value;
-    }
+    static class node implements Comparable<node> {
+        int to;
+        int value;
+
+        public node(int to, int value) {
+            this.to = to;
+            this.value = value;
+        }
 
 
-    @Override
-    public int compareTo(node node) {
-        return this.value-node.value;
+        @Override
+        public int compareTo(node node) {
+            return this.value - node.value;
+        }
     }
 }

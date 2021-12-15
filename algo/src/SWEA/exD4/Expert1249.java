@@ -65,20 +65,20 @@ public class Expert1249 {
         }
 
     }
-}
-class xxyy implements Comparable<xxyy> {
-    int x;
-    int y;
-    int cost;
+    static class xxyy implements Comparable<xxyy> {
+        int x;
+        int y;
+        int cost;
 
-    xxyy(int x,int y,int cost){
-        this.x=x;
-        this.y=y;
-        this.cost=cost;
-    }
+        xxyy(int x,int y,int cost){
+            this.x=x;
+            this.y=y;
+            this.cost=cost;
+        }
 
-    @Override
-    public int compareTo(xxyy o) {
-        return this.cost-o.cost;
+        @Override
+        public int compareTo(xxyy o) {
+            return this.cost-o.cost;
+        }
     }
 }

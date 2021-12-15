@@ -86,20 +86,20 @@ public class BOJ17143 {//풀이중
         System.out.println(inven);
     }
 
-}
+    static class shark {
+        int r;
+        int c;
+        int speed;
+        int dir;
+        int size;
 
-class shark {
-    int r;
-    int c;
-    int speed;
-    int dir;
-    int size;
-
-    public shark(int r, int c, int speed, int dir, int size) {
-        this.r = r;
-        this.c = c;
-        this.speed = speed;
-        this.dir = dir;
-        this.size = size;
+        public shark(int r, int c, int speed, int dir, int size) {
+            this.r = r;
+            this.c = c;
+            this.speed = speed;
+            this.dir = dir;
+            this.size = size;
+        }
     }
 }
+

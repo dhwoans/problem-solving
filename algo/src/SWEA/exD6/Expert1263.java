@@ -67,19 +67,20 @@ public class Expert1263 {
             }
         }
     }
+
+    static class node implements Comparable<node> {
+        int to;
+        int value;
+
+        node(int to, int value) {
+            this.to = to;
+            this.value = value;
+        }
+
+        @Override
+        public int compareTo(node o) {
+            return this.value - o.value;
+        }
+    }
 }
 
-class node implements Comparable<node> {
-    int to;
-    int value;
-
-    node(int to, int value) {
-        this.to = to;
-        this.value = value;
-    }
-
-    @Override
-    public int compareTo(node o) {
-        return this.value - o.value;
-    }
-}

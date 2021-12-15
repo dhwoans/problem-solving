@@ -75,13 +75,14 @@ import java.util.*;
 
        }
     }
-}
-class xxyy {
-    int x;
-    int y;
 
-    xxyy(int x, int y) {
-        this.x = x;
-        this.y = y;
+    static class xxyy {
+        int x;
+        int y;
+
+        xxyy(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

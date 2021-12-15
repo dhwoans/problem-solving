@@ -95,13 +95,14 @@ public class BOJ17135 {//풀이중
             isSelect[z]=false;
         }
     }
-}
-class enemy{
-    int r;
-    int c;
 
-    public enemy(int r, int c) {
-        this.r = r;
-        this.c = c;
+    static class enemy {
+        int r;
+        int c;
+
+        public enemy(int r, int c) {
+            this.r = r;
+            this.c = c;
+        }
     }
 }

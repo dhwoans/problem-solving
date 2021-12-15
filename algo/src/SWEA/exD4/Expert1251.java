@@ -79,28 +79,31 @@ public class Expert1251 {
 
         return ret;
     }
-}
-class xy{
-    int x;
-    int y;
-    xy(int x,int y){
-        this.x=x;
-        this.y=y;
+
+    static class xy {
+        int x;
+        int y;
+
+        xy(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
     }
 
-}
-class land implements Comparable<land> {
-    int to;
-    double value;
+    static class land implements Comparable<land> {
+        int to;
+        double value;
 
-    land(int to,double value){
-        this.to=to;
-        this.value=value;
-    }
+        land(int to, double value) {
+            this.to = to;
+            this.value = value;
+        }
 
 
-    @Override
-    public int compareTo(land o) {
-        return this.value>o.value?1:-1;
+        @Override
+        public int compareTo(land o) {
+            return this.value > o.value ? 1 : -1;
+        }
     }
 }

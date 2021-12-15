@@ -91,22 +91,23 @@ public class BOJ15686 {
         }
     }
 
-}
-class house{
-    int r;
-    int c;
+    static class house {
+        int r;
+        int c;
 
-    public house(int r, int c) {
-        this.r = r;
-        this.c = c;
+        public house(int r, int c) {
+            this.r = r;
+            this.c = c;
+        }
     }
-}
-class kfc{
-    int r;
-    int c;
 
-    public kfc(int r, int c) {
-        this.r = r;
-        this.c = c;
+    static class kfc {
+        int r;
+        int c;
+
+        public kfc(int r, int c) {
+            this.r = r;
+            this.c = c;
+        }
     }
 }
