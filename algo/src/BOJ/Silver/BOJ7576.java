@@ -73,14 +73,15 @@ public class BOJ7576 {
             }
         }
     }
-}
 
-class node {
-    int x;
-    int y;
+    static class node {
+        int x;
+        int y;
 
-    node(int x, int y) {
-        this.x = x;
-        this.y = y;
+        node(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
+
