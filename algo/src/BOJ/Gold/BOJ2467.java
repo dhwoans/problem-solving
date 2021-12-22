@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * @packageName : BOJ.Gold
- * @fileName : BOJ_2468_용액
+ * @fileName : BOJ_2467_용액
  * @date : 2021. 12. 15.
  * @language : JAVA
  * @classification :
@@ -35,6 +35,9 @@ public class BOJ2467 {
     }
 
     private static void Check(int start,int end ) {
+        while(start<end){
 
+
+        }
     }
 }
