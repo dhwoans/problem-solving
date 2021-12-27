@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
@@ -20,47 +21,38 @@ import java.util.StringTokenizer;
  **/
 public class BOJ12891 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int S = Integer.parseInt(st.nextToken());                   // DNA 문자열 길이
         int P = Integer.parseInt(st.nextToken());                   // 부분 문자열 길이
-        int answer =0;
+        int start = 0;
+        int answer = 0;
         ArrayList<Character> sum = new ArrayList<>();
-        char[] str = new char[S];
-        int[] DNA = new int[4];
+        Map<Character, Integer> DNA = new HashMap();
 
-        String strr = br.readLine();
-        for (int i = 0; i < str.length; i++) {
-            str[i] = strr.charAt(i);
-        }
+        char[] str = br.readLine().toCharArray();
+
 
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < DNA.length; i++) {
-            DNA[i]=Integer.parseInt(st.nextToken());
-        }
+        DNA.put('A', Integer.parseInt(st.nextToken()));
+        DNA.put('C', Integer.parseInt(st.nextToken()));
+        DNA.put('G', Integer.parseInt(st.nextToken()));
+        DNA.put('T', Integer.parseInt(st.nextToken()));
+
 
         for (int end = 0; end < str.length; end++) {
             sum.add(str[end]);
-            if(end>=P-1){
-                if(Check(sum,DNA)){
+            DNA.put(str[end], DNA.get(str[end]) - 1);
+
+            if (sum.size() >= P) {
+                if(DNA.get('A')<=0&&DNA.get('C')<=0&&DNA.get('G')<=0&&DNA.get('T')<=0){
                     answer++;
                 }
+                DNA.put(str[start], DNA.get(str[start]) + 1);
                 sum.remove(0);
-                
+                start++;
             }
         }
         System.out.println(answer);
-    }
-
-    private static boolean Check(ArrayList<Character> sum,int[] DNA) {
-        char[] DNAstr ={'A', 'C', 'G', 'T'};
-        int[] check = new int[4];
-        for (int i = 0; i < sum.size(); i++) {
-            check[Arrays.binarySearch(DNAstr,sum.get(i))]++;
-        }
-        if(Arrays.equals(DNA,check)){
-            return true;
-        }
-        return false;
     }
 }
