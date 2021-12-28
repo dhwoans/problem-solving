@@ -41,15 +41,14 @@ public class BOJ12891 {
 
 
         for (int end = 0; end < str.length; end++) {
-            sum.add(str[end]);
+
             DNA.put(str[end], DNA.get(str[end]) - 1);
 
-            if (sum.size() >= P) {
+            if (end >= P-1) {
                 if(DNA.get('A')<=0&&DNA.get('C')<=0&&DNA.get('G')<=0&&DNA.get('T')<=0){
                     answer++;
                 }
                 DNA.put(str[start], DNA.get(str[start]) + 1);
-                sum.remove(0);
                 start++;
             }
         }

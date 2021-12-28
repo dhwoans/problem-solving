@@ -16,6 +16,7 @@ import java.util.HashMap;
  * @required_time : 00:40 ~ 01:22
  * @submissions : 1
  * @description :
+ * 알파벳 별로 개수를 입력받는다
  **/
 public class BOJ20437 {
     public static void main(String[] args) throws IOException {
