@@ -7,7 +7,7 @@ import java.util.*;
 
 public class BOJ2667 {
     static int n,count;
-    static ArrayList num;
+    static ArrayList<Integer> num;
     static int[][] map;
     static boolean[][] visit;
     static int[][] dir ={{-1,0},{1,0},{0,-1},{0,1}};
@@ -38,7 +38,7 @@ public class BOJ2667 {
         }
         System.out.println(count);
         Collections.sort(num);
-        for (Object o : num) {
+        for (Integer o : num) {
             System.out.println(o);
         }
     }

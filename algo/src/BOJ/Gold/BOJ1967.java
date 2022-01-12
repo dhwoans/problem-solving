@@ -3,52 +3,46 @@ package BOJ.Gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- * 플로이드
- */
-public class BOJ1967 {//풀이중 --시간초과
-    static int INF = 987654321;
+ * @packageName : BOJ.Gold
+ * @fileName : BOJ4970
+ * @date : 2022-01-05
+ * @language : JAVA
+ * @classification :
+ * @time_limit : 2sec
+ * @required_time : 00:40 ~ 01:22
+ * @submissions : 1
+ * @description :
+ * 플로이드 mle
+ **/
+public class BOJ1967 {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
-        int n  = Integer.parseInt(br.readLine());
-        int map[][]=new int[n][n];
+        int n = Integer.parseInt(br.readLine());
+        ArrayList<ArrayList<node>> arr = new ArrayList<>();
 
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                if(i==j)continue;
-                map[i][j]=INF;
-            }
+        for (int i = 0; i < n+1; i++) {
+            arr.add(new ArrayList<>());
         }
 
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n+1; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            int from = Integer.parseInt(st.nextToken())-1;
-            int to = Integer.parseInt(st.nextToken())-1;
-            int cost = Integer.parseInt(st.nextToken());
+            int from = Integer.parseInt(st.nextToken());
+            int to = Integer.parseInt(st.nextToken());
+            int len = Integer.parseInt(st.nextToken());
 
-            map[from][to]=cost;
-            map[to][from]=cost;
+            arr.get(from).add(new node(to,len));
+            arr.get(to).add(new node(from,len));
         }
 
-        //플로이드
-        for (int k = 0; k < map.length; k++) {
-            for (int i = 0; i < map.length; i++) {
-                for (int j = 0; j < map.length; j++) {
-                    if(map[i][j]>map[i][k]+map[k][j]){
-                        map[i][j]=map[i][k]+map[k][j];
-                    }
-                }
-            }
-        }
-        int max = Integer.MIN_VALUE;
-        for (int[] ints : map) {
-            for (int i : ints) {
-               if(i==INF)continue;
-               max =Math.max(max,i);
-            }
-        }
-            System.out.println(max);
+        bfs();
+    }
+
+    private static void bfs() {
+
     }
 }
