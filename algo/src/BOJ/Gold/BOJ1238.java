@@ -3,16 +3,22 @@ package BOJ.Gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /**
- * 1238.파티
- *
- * 다익스트라라 */
+ * @packageName : BOJ.Gold
+ * @fileName : BOJ1719
+ * @date : 2022-01-19
+ * @language : JAVA
+ * @classification :
+ * @time_limit : 2sec
+ * @required_time : 00:40 ~ 01:22
+ * @submissions : 1
+ * @description :
+ **/
 public class BOJ1238 {
     static int N,M,X;
     static ArrayList<ArrayList<node>> arr;
