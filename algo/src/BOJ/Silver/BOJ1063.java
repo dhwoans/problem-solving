@@ -7,50 +7,92 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
- * 1063.킹
- *
- * 열 index 다른거 주의
- */
+ * @packageName : BOJ.Silver
+ * @fileName : BOJ1063
+ * @date : 2022-01-20
+ * @language : JAVA
+ * @classification : simulation
+ * @time_limit : 2sec
+ * @required_time : 00:40 ~ 01:22
+ * @submissions : 1
+ * @description :
+ **/
 public class BOJ1063 {
+    static String kingpos;
+    static String dolpos;
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        String king = st.nextToken();
-        String dol = st.nextToken();
-        int command = Integer.parseInt(st.nextToken());
 
-        //
-        for (int i = 0; i < command; i++) {
+        kingpos = st.nextToken();
+        dolpos = st.nextToken();
+        int move = Integer.parseInt(st.nextToken());
+
+        for (int i = 0; i < move; i++) {
             String dir = br.readLine();
-            //대각선일때
-            if(dir.length()>1){
-                String ch = Character.toString(dir.charAt(0));
-                dir = Character.toString(dir.charAt(1));
-                pos(ch,king);
+            int row = 0;
+            int col = 0;
+
+            if (dir.equals("R")) {
+                row = 1;
+            } else if (dir.equals("L")) {
+                row = -1;
+            } else if (dir.equals("B")) {
+                col = -1;
+            } else if (dir.equals("T")) {
+                col = 1;
+            } else if (dir.equals("RT")) {
+                row = 1;
+                col = 1;
+            } else if (dir.equals("LT")) {
+                row = -1;
+                col = 1;
+            } else if (dir.equals("RB")) {
+                row = 1;
+                col = -1;
+            } else if (dir.equals("LB")) {
+                row = -1;
+                col = -1;
             }
-                pos(dir,king);
-
+            check(row, col);
         }
+
+
+        System.out.println(kingpos);
+        System.out.println(dolpos);
 
     }
 
-    private static void pos(String ch,String str) {
-        switch (ch){
-            case "R":
-
-                break;
-            case "L":
-                break;
-            case "B":
-                break;
-            case "T":
-                break;
-
+    private static void check(int row, int col) {
+        char kingRow = (char)((int)kingpos.charAt(0)+row);
+        char kingCol = (char)((int)kingpos.charAt(1)+col);
+        if (kingRow < 'A' || kingRow > 'H' || kingCol < '1' || kingCol > '8') {
+            return;
         }
-        //위
-        //아래
-        //왼
-        //좌
+        String newKingpos ="";
+        newKingpos += kingRow;
+        newKingpos += kingCol;
+
+        //돌이 있는지확인
+        if(dolpos.equals(newKingpos)){
+           Checkdol(newKingpos,row,col);
+        }else{
+            kingpos = newKingpos;
+        }
     }
 
+    private static void Checkdol(String newKingpos,int row, int col) {
+        char dolRow = (char)((int)dolpos.charAt(0)+row);
+        char dolCol = (char)((int)dolpos.charAt(1)+col);
+        if(dolRow < 'A' || dolRow > 'H' || dolCol < '1' || dolCol > '8'){
+            return;
+        }
+        String newdolpos = "";
+        newdolpos += dolRow;
+        newdolpos += dolCol;
+
+        kingpos = newKingpos;
+        dolpos = newdolpos;
+    }
 }
