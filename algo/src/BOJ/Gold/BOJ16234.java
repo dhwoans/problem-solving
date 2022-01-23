@@ -3,6 +3,7 @@ package BOJ.Gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -32,7 +33,7 @@ public class BOJ16234 {
     static int N,L,R;
     static int[][] map;
     static int[][] visit;
-    static int count;
+    static int day;
     static int[][] dir ={{-1,0},{1,0},{0,-1},{0,1}};
 
     public static void main(String[] args) throws IOException {
@@ -43,28 +44,30 @@ public class BOJ16234 {
         R = Integer.parseInt(st.nextToken());
         map = new int[N][N];
         visit = new int[N][N];
-        count = 1;
+        day = 0;
+        //일력받기
         for (int i = 0; i < map.length; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < map[0].length; j++) {
                 map[i][j]=Integer.parseInt(st.nextToken());
             }
         }
+        ArrayList<Integer> sumofCells = new ArrayList<>();
         while (true){
-            count++;
+            day++;
             //연합파악하기
             int cout =1;
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[0].length; j++) {
                     if (visit[i][j] == 0) {
-                        Bfs(i, j,count);
-                        visit[i][j]=count;
-                        count++;
+                        visit[i][j]= day;
+                        Bfs(i, j, day);
+                        day++;
                     }
                 }
             }
             //인구이동
-            int[] countpeo = new int[count];
+            int[] countpeo = new int[day];
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[0].length; j++) {
 
@@ -73,25 +76,27 @@ public class BOJ16234 {
         }
     }
 
-    private static void Bfs(int r,int c,int count) {
+    private static int Bfs(int r,int c,int count) {
+        int cell =0;
         Queue<xy> que =new LinkedList<>();
         que.offer(new xy(r,c));
 
         while (!que.isEmpty()){
             xy temp = que.poll();
+            cell += map[temp.x][temp.y];
 
             for (int i = 0; i < 4; i++) {
-                int nr = r+dir[i][0];
-                int nc = c+dir[i][1];
+                int nr = temp.x+dir[i][0];
+                int nc = temp.y+dir[i][1];
 
                 if(nr<0||nr>=N||nc<0||nc>N)continue;
                 if(map[nr][nc]>=L&&map[nr][nc]<=R&&visit[nr][nc]==0){
                     visit[nr][nc]=count;
-
                     que.add(new xy(nr,nc));
                 }
             }
         }
+        return cell;
     }
 
 }
