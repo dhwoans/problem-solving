@@ -29,7 +29,7 @@ public class BOJ1264 {
             Pattern pattern = Pattern.compile("[AEIOUaeiou]");
             Matcher matcher = pattern.matcher(str);
 
-            sb.append(matcher.results().count()+"\n");
+            sb.append(matcher.toMatchResult()+"\n");
         }
         System.out.println(sb);
     }

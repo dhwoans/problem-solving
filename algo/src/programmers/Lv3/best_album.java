@@ -2,7 +2,7 @@ package programmers.Lv3;
 
 import java.util.*;
 
-public class 베스트앨범 {
+public class best_album {
     static class num implements Comparable<num>{
         int index;
         int vol;

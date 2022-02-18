@@ -23,6 +23,6 @@ public class BOJ1543 {
         String str = br.readLine();
         Pattern pattern = Pattern.compile(br.readLine());
         Matcher matcher = pattern.matcher(str);
-        System.out.println(matcher.results().count());
+        System.out.println(matcher);
     }
 }
