@@ -5,71 +5,75 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+
 public class BOJ15666 {
-    static int n,r;
-    static int arr[];
-    static int input[];
-    static boolean isSelect[];
-    static StringBuilder sb = new StringBuilder();
+
+    private static int n;
+    private static int m;
+    private static int[] arr;
+    private static int[] pick;
+    private static ArrayList<int[]> result;
     private static HashMap<String, Boolean> map;
-    private static ArrayList<String> list;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        n= Integer.parseInt(st.nextToken());
-        r= Integer.parseInt(st.nextToken());
-        arr = new int[r];
-        input= new int[n];
-        isSelect =new boolean[n];
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        arr = new int[n];
+        pick = new int[m];
+        result = new ArrayList<>();
+        map = new HashMap<>();
 
         st = new StringTokenizer(br.readLine());
-        for(int i=0;i<n;i++){
-            input[i]=Integer.parseInt(st.nextToken());
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i]= Integer.parseInt(st.nextToken());
         }
-        list = new ArrayList<String>();
+
         dfs(0,0);
-        HashSet<String> set = new HashSet<>(list);
-        List<String> answer = new ArrayList(set);
-        ArrayList<String[]> result = new ArrayList<>();
-        for (String o : answer) {
-            String[] arr= o.split(" ");
-            result.add(arr);
-        }
-        Collections.sort(result,(o1,o2)->{
+        //정렬
+        Collections.sort(result,(o1, o2)->{
             for (int i = 0; i < o1.length; i++) {
-                if(o1[i].equals(o2[i]))continue;
-                else return Integer.parseInt(o1[i])-Integer.parseInt(o2[i]);
+                if(o1[i]==o2[i])continue;
+                else return o1[i]-o2[i];
             }
-            return Integer.parseInt(o1[0])-Integer.parseInt(o2[0]);
+            return o1[0]-o2[0];
         });
-        for (String[] strings : result) {
-            for (String string : strings) {
-                System.out.print(string +" ");
+        for (int[] i : result) {
+            for (int i1 : i) {
+                System.out.print(i1+" ");
             }
             System.out.println();
         }
 
-
     }
-    static void dfs(int cnt,int num){
-        if(cnt==r){
-            String str= "";
-            for(int i=0;i<arr.length;i++){
 
-                str+=arr[i]+" ";
-            }
-            list.add(str);
+    private static void dfs(int cnt ,int num) {
+        if(cnt==m){
+            cal(pick);
             return;
         }
+        for (int i = 0; i < arr.length; i++) {
+            if(num>arr[i])continue;
+            pick[cnt]=arr[i];
+            dfs(cnt+1,arr[i]);
 
-        for(int i=0;i<n;i++){
+        }
+    }
 
-            if(num==input[i]){isSelect[i]=true;}
-            arr[cnt]=input[i];
-            isSelect[i]=true;
-            dfs(cnt+1,arr[cnt]);
-            isSelect[i]=false;
+    private static void cal(int[] pick) {
+        boolean flag = true;
+        StringBuilder sb = new StringBuilder();
+        for (int i : pick) {
+            sb.append(i).append(" ");
+        }
+
+        if(map.getOrDefault(sb.toString(),false)){
+            return;
+        }else{
+            map.put(sb.toString(),true);
+            result.add(Arrays.copyOf(pick,pick.length));
         }
     }
 }
