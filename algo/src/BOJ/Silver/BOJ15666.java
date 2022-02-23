@@ -1,12 +1,11 @@
-package BOJ;
+package BOJ.Silver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 
-public class BOJ15663 {
+public class BOJ15666 {
     static int n,r;
     static int arr[];
     static int input[];
@@ -56,21 +55,21 @@ public class BOJ15663 {
     static void dfs(int cnt,int num){
         if(cnt==r){
             String str= "";
-           for(int i=0;i<arr.length;i++){
+            for(int i=0;i<arr.length;i++){
 
-              str+=arr[i]+" ";
-           }
-           list.add(str);
+                str+=arr[i]+" ";
+            }
+            list.add(str);
             return;
         }
 
-           for(int i=0;i<n;i++){
-               if(isSelect[i])continue;
-               if(num==input[i]){isSelect[i]=true;}
-               arr[cnt]=input[i];
-               isSelect[i]=true;
-               dfs(cnt+1,arr[cnt]);
-               isSelect[i]=false;
-           }
+        for(int i=0;i<n;i++){
+
+            if(num==input[i]){isSelect[i]=true;}
+            arr[cnt]=input[i];
+            isSelect[i]=true;
+            dfs(cnt+1,arr[cnt]);
+            isSelect[i]=false;
         }
     }
+}
