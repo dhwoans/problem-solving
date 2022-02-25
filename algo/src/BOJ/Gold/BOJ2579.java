@@ -5,22 +5,38 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class BOJ2579 {
+
+    private static int[] arr;
+    private static Integer[] dp;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int[] arr = new int[n];
-        for (int i = 0; i < arr.length; i++) {
+        arr = new int[n+1];
+        dp = new Integer[n + 1];
+        for (int i = 1; i < arr.length; i++) {
             arr[i] = Integer.parseInt(br.readLine());
         }
-        int num = 0;
-        int count =0;
-        int amount = arr[num];
-        if(arr[num+1]>arr[num+2]){
 
+        dp[0]= arr[0];
+        dp[1]= arr[1];
+
+        if(n >= 2) {
+            dp[2] = arr[1] + arr[2];
         }
+
+        System.out.println(run(n));
+
     }
 
-    private static void jump() {
+    private static int run(int num) {
+        if(dp[num] == null) {
+            dp[num] = Math.max(run(num - 2), run(num - 3) + arr[num - 1]) + arr[num];
+        }
 
+        return dp[num];
     }
+
+
+
 }
