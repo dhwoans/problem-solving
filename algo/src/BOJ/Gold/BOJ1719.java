@@ -73,7 +73,7 @@ public class BOJ1719 {
             if(visit[z.to]<z.value)continue;
 
             for (int j = 0; j < arr.get(z.to).size(); j++) {
-                node next = arr.get(z.to).get(i);
+                node next = arr.get(z.to).get(j);
                 if(visit[next.to]>z.value+next.value){
                     path[next.to]=z.to;
                     visit[next.to]=z.value+next.value;
@@ -82,7 +82,7 @@ public class BOJ1719 {
             }
         }
         StringBuilder sb = new StringBuilder();
-        for (int j = 0; j < n+1; j++) {
+        for (int j = 1; j < n+1; j++) {
             if(j==i){
                 sb.append("-").append(" ");
             }else{
