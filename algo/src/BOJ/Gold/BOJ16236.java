@@ -38,7 +38,9 @@ public class BOJ16236 {
 
         public void level() {
             if (count == size) {
-                size += 1;
+                if(size<7){
+                    size += 1;
+                }
                 count = 0;
 
 
