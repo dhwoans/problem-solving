@@ -6,15 +6,11 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ1149 {
-
-    private static int[][] map;
-    private static boolean[] color;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        map = new int[N][3];
-        color = new boolean[N];
+        int[][] map = new int[N][3];
+
 
         //정보 입력
         for (int i = 0; i < map.length; i++) {
