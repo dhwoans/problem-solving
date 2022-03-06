@@ -33,7 +33,7 @@ public class BOJ15683 {//풀이중
                     int left = search(i, 0, j, 1);//좌범위
                     int light = search(i, j, M, 1);//우범위
                     int up = search(j, 0, i, 0);//상범위
-                    int down = search(j, i, N, 0);//아래범위
+                    int down = search(j, i, N, 0);//하범위
                     //범위가큰거선택
                     switch (map[i][j]) {
                         case 1:
