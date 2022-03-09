@@ -20,83 +20,116 @@ import java.util.StringTokenizer;
  * @description :
  **/
 public class BOJ16234 {
-    static class xy{
+
+    private static int count;
+
+    private static class xy {
         int x;
         int y;
+        int val;
 
-        private xy(int x,int y){
+        private xy(int x,int y,int val){
+
             this.x=x;
             this.y=y;
+            this.val = val;
         }
+
     }
 
-    static int N,L,R;
-    static int[][] map;
-    static int[][] visit;
-    static int day;
-    static int[][] dir ={{-1,0},{1,0},{0,-1},{0,1}};
+    private static int[] visited;
+    private static xy[] map;
+    private static ArrayList<ArrayList<Integer>> arr;
+    private static int[][] dir ={{-1,0},{1,0},{0,-1},{0,1}};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        L = Integer.parseInt(st.nextToken());
-        R = Integer.parseInt(st.nextToken());
-        map = new int[N][N];
-        visit = new int[N][N];
-        day = 0;
-        //일력받기
-        for (int i = 0; i < map.length; i++) {
+        int n =Integer.parseInt(st.nextToken());
+        int l =Integer.parseInt(st.nextToken());
+        int r =Integer.parseInt(st.nextToken());
+
+        map = new xy[n*n];
+
+
+
+        //정보입력
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < map[0].length; j++) {
-                map[i][j]=Integer.parseInt(st.nextToken());
+            for (int j = 0; j < n; j++) {
+                map[n*i+j]=new xy(i,j,Integer.parseInt(st.nextToken()));
             }
         }
-        ArrayList<Integer> sumofCells = new ArrayList<>();
-        while (true){
-            day++;
-            //연합파악하기
-            int cout =1;
-            for (int i = 0; i < map.length; i++) {
-                for (int j = 0; j < map[0].length; j++) {
-                    if (visit[i][j] == 0) {
-                        visit[i][j]= day;
-                        Bfs(i, j, day);
-                        day++;
+        int day =0;
+        while(true){
+            visited = new int[n*n];
+            arr = new ArrayList<>();
+            //간선체크
+            boolean flag =true;
+            for (int i = 0; i < n*n; i++) {
+                arr.add(new ArrayList<>());
+            }
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+
+                    for (int k = 0; k < 4; k++) {
+                        int nr = i + dir[k][0];
+                        int nc = j + dir[k][1];
+
+                        if(nr<0||nc<0||nr>=n||nc>=n)continue;
+                        int gap = Math.abs(map[n*i+j].val-map[n*nr+nc].val);
+                        if(gap>=l&&gap<=r){
+                            flag =false;
+                            int from = n*i+j;
+                            int to =n*nr+nc;
+
+                            arr.get(from).add(to);
+//                            System.out.println(from+" "+to);
+                        }
                     }
                 }
             }
-            //인구이동
-            int[] countpeo = new int[day];
-            for (int i = 0; i < map.length; i++) {
-                for (int j = 0; j < map[0].length; j++) {
+            if(flag)break;
+            day++;
 
+            //이동
+            count = 1;
+            ArrayList<Integer> mod = new ArrayList<>();
+            for (int i = 0; i < arr.size(); i++) {
+                if(arr.get(i).size()!=0&&visited[i]==0){
+                    mod.add(bfs(i));
+                    count++;
+                }
+            }
+            for (int i = 0; i < map.length; i++) {
+                if(visited[i]!=0){
+                    map[i].val=mod.get(visited[i]-1);
                 }
             }
         }
+        System.out.println(day);
     }
 
-    private static int Bfs(int r,int c,int count) {
-        int cell =0;
-        Queue<xy> que =new LinkedList<>();
-        que.offer(new xy(r,c));
+    private static int bfs(int num) {
+        int cell =1;
+        int sum = map[num].val;
+        Queue<Integer> que = new LinkedList<>();
+        que.add(num);
+        visited[num]=count;
 
         while (!que.isEmpty()){
-            xy temp = que.poll();
-            cell += map[temp.x][temp.y];
+            int z = que.poll();
 
-            for (int i = 0; i < 4; i++) {
-                int nr = temp.x+dir[i][0];
-                int nc = temp.y+dir[i][1];
-
-                if(nr<0||nr>=N||nc<0||nc>N)continue;
-                if(map[nr][nc]>=L&&map[nr][nc]<=R&&visit[nr][nc]==0){
-                    visit[nr][nc]=count;
-                    que.add(new xy(nr,nc));
+            for (int i = 0; i < arr.get(z).size(); i++) {
+                int next = arr.get(z).get(i);
+                if(visited[next]==0){
+                    visited[next]=count;
+                    cell++;
+                    sum += map[next].val;
+                    que.add(next);
                 }
             }
         }
-        return cell;
+        return sum/cell;
     }
-
 }
