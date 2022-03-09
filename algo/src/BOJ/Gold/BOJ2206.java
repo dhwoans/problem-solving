@@ -1,6 +1,6 @@
 package BOJ.Gold;
 
-import javax.swing.plaf.ViewportUI;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
