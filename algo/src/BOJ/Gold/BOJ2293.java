@@ -5,40 +5,31 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ2293 {
+public class BOJ2293 {//풀이중
 
-    private static int[] arr;
-    private static int s;
+    private static int k;
+    private static int n;
+    private static int[] coin;
+    private static int count;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        s = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(st.nextToken());
+        count = 0;
+        coin = new int[n];
+        int[][] dp = new int[k][n];
 
-        arr = new int[n];
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < arr.length; i++) {
-            arr[i]= Integer.parseInt(st.nextToken());
+        //정보입력
+        for (int i = 0; i < coin.length; i++) {
+            coin[i]=Integer.parseInt(br.readLine());
         }
 
-        int start =0;
-        int end =0;
-        int amount =arr[0];
-        int answer = Integer.MAX_VALUE;
-        while(true){
 
-            if(amount>=s){
-                answer = Math.min(start - end + 1,answer);
-                amount-=arr[end++];
-            }
-            else if(amount<s){
-                start++;
-                if(start>=arr.length)break;
-                amount+=arr[start];
-            }
-        }
-        if(answer==Integer.MAX_VALUE)answer=0;
-        System.out.println(answer);
+
+        
+        
+        
     }
 }
