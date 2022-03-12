@@ -5,173 +5,149 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-/**
- * 3190.뱀
- * <p>
- * 사과의 위치는 모두 다르며, 맨 위 맨 좌측 (1행 1열) 에는 사과가 없다.
- * X는 10,000 이하의 양의 정수이며, 방향 전환 정보는 X가 증가하는 순으로 주어진다.
- */
+
 public class BOJ3190 {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());//맵크기
-        int K = Integer.parseInt(br.readLine());//사과개수
-        StringTokenizer st;
-
-        //맵정보 입력
-        int[][] map = new int[N+2][N+2];
-        for (int i = 0; i < K; i++) {
-            st = new StringTokenizer(br.readLine());
-            int y = Integer.parseInt(st.nextToken());//행
-            int x = Integer.parseInt(st.nextToken());//열
-
-            //사과는 2로 표시
-            map[y][x] = 2;
-        }
-
-        //명령 저장
-        Queue<String[]> com = new LinkedList<>();
-        int command = Integer.parseInt(br.readLine());
-        for (int i = 0; i < command; i++) {
-            st = new StringTokenizer(br.readLine());
-            //시간
-            String sc = st.nextToken();
-            //방향
-            String dir = st.nextToken();
-
-            com.offer(new String[]{sc, dir});
-
-        }
-        //시작
-        int turn = 0;
-            snake s = new snake();
-        while (true) {
-            turn++;
-            //명령확인
-            if (!com.isEmpty()&&Integer.parseInt(com.peek()[0]) == turn) {
-                s.dir(com.poll()[1]);
-            }
-            //한칸앞으로
-            s.go();
-            if (s.x == 0 || s.y == 0 || s.x == map.length-1 || s.y == map.length-1) {
-
-                break;
-            }
-            //시과를 만나면 먹는다
-            if (map[s.x][s.y] == 2) {
-                s.eat();
-            }
-
-            s.status();
-
-            //충돌확인
-            //벽에 부딪힘
-            if (s.check()) {
-                break;
-            }
-        }
-        System.out.println(turn+1);
-
-    }
-
-    static class snake {
+    private static class xy{
         int x;
         int y;
-        int len;
-        List<int[]> que;
-        int head;
 
-        public snake() {
-            x = 1;
-            y = 1;
-            len = 1;
-            que = new ArrayList<int[]>();
-            head = 2;
+        private xy(int x,int y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+    private static class command{
+        int second;
+        char dir;
+
+        private command(int second,char dir){
+            this.second = second;
+            this.dir = dir;
+        }
+    }
+
+    //뱀
+    private static class snake{
+        int len=1;
+        int dir =3;
+        xy pos;
+        List<xy> body;
+
+        private snake(){
+            this.pos = new xy(0,0);
+            this.body = new ArrayList<xy>();
+            body.add(new xy(0,0));
+        }
+        private void eat(){
+            len+=1;
         }
 
-        /**
-         * 이동하기
-         */
-        public void go() {
-            que.add(new int[]{x, y});
-            int deltas[][] = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};//0상,1하,2좌,3우
-            x += deltas[head][0];
-            y += deltas[head][1];
-            que.add(new int[]{x, y});
+        private void go(){
+            if(this.dir==0){
+                this.pos.x-=1;
+            }else if(this.dir==1){
+                this.pos.x+=1;
+            }else if(this.dir==2){
+                this.pos.y-=1;
+            }else if(this.dir==3){
+                this.pos.y+=1;
+            }
+
+
         }
-        //L==왼쪽 D==오른쪽
-
-        /**
-         * 방향 전환하기
-         *
-         * @param dir
-         */
-        public void dir(String dir) {
-
-
-            switch (head) {
-                case 0:
-                    if (dir.equals("L")) {
-                        head = 3;
-                    } else {
-                        head = 2;
-                    }
-                    break;
-                case 1:
-                    if (dir.equals("L")) {
-                        head = 2;
-                    } else {
-                        head = 3;
-                    }
-                    break;
-                case 2:
-                    if (dir.equals("L")) {
-                        head = 0;
-                    } else {
-                        head = 1;
-                    }
-                    break;
-                case 3:
-                    if (dir.equals("L")) {
-                        head = 1;
-                    } else {
-                        head = 0;
-                    }
-                    break;
+        //방향전환
+        private void changeDir(char c){
+            if(this.dir==0){
+                if(c=='L') dir=2;
+                else dir=3;
+            }else if(dir==1){
+                if(c=='L')dir=3;
+                else dir=2;
+            }else if(dir==2){
+                if(c=='L')dir=1;
+                else dir=0;
+            }else{
+                if(c=='L')dir=0;
+                else dir=1;
             }
         }
-
-        /**
-         * 몸 길이 늘리기
-         */
-        public void eat() {
-
-            len++;
+        // 몸통 체크
+        private void bodycheck(){
+            if(body.size()!=len){
+                body.remove(0);
+            }
         }
-
-        /**
-         * 현재위치 확인하기
-         */
-        public void status() {
-            if (que.size() > len) {
-                while (que.size() != len) {
-                    que.remove(0);
+        // 충돌 체크
+        private boolean crush(){
+            for (BOJ3190.xy z : body) {
+                if(pos.x==z.x&&pos.y==z.y){
+                    return true;
                 }
+
             }
+            body.add(new xy(pos.x,pos.y));
+            return false;
         }
 
-        /**
-         * 배열로 담으면 set으로 중복체크를 못한다.
-         * 충돌 확인하기
-         *
-         * @return
-         */
-        public boolean check() {
-            boolean flag = false;
-            //뱀길이가 3이하면 부딫힐 일이 없다
-            int arr = que.get(0)[0];
-            return flag;
+    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int k = Integer.parseInt(br.readLine());
+
+        int[][] map = new int[n][n];
+
+
+        for (int i = 0; i < k; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+
+            map[x-1][y-1]=1;
         }
+
+        int com = Integer.parseInt(br.readLine());
+        Queue<command> commands = new LinkedList<>();
+
+        for (int i = 0; i < com; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int s = Integer.parseInt(st.nextToken());
+            char c = st.nextToken().charAt(0);
+
+            commands.add(new command(s+1,c));
+        }
+        int turn =1;
+        snake s = new snake();
+        while (true){
+           //머리 다음 칸에 위치
+           s.go();
+           if(s.pos.x<0||s.pos.y<0||s.pos.x>=n||s.pos.y>=n){
+               break;
+           }
+           if(s.crush()){
+               break;
+           }
+
+           //이동한 칸에 사과 있는지 확인
+           if(map[s.pos.x][s.pos.y]==1){
+               s.eat();
+               map[s.pos.x][s.pos.y]=0;
+           }
+
+           //몸통체크
+           s.bodycheck();
+
+           //턴증가
+           turn++;
+
+           //방향전환
+           if(commands.isEmpty())continue;
+           if(turn==commands.peek().second){
+               s.changeDir(commands.peek().dir);
+               commands.poll();
+           }
+       }
+        System.out.println(turn);
     }
 }
 
