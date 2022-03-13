@@ -6,6 +6,18 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class BOJ17142 {
+    private static class xxyy {
+        int x;
+        int y;
+        char val;
+
+        private xxyy(int x, int y, char val) {
+            this.x = x;
+            this.y = y;
+            this.val = val;
+        }
+    }
+
     static int M, N;
     static int[][] map;
     static boolean[][] visit;
@@ -13,7 +25,7 @@ public class BOJ17142 {
     static boolean[] comb;
     static int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     static ArrayList<Integer> answer;
-    static int count =0;
+    static int count = 0;
 
 
     public static void main(String[] args) throws IOException {
@@ -24,8 +36,8 @@ public class BOJ17142 {
 
         //값 입력
         map = new int[N][N];
-        visit = new boolean[N][N];
         pos = new ArrayList<>();
+
         for (int i = 0; i < map.length; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < map[i].length; j++) {
@@ -37,18 +49,29 @@ public class BOJ17142 {
         }
 
         //조합
-
         comb = new boolean[pos.size()];
         answer = new ArrayList<>();
-        count=0;
+        count = 0;
         comb(0, 0);
 
-        int val = answer.stream().max((o1, o2) -> o1-o2).orElse(123);
-        if(val==-999){
+        int result = answer.stream().filter(o1 -> o1!=-1).min((o1, o2) -> o1 - o2).orElse(-22);
+        //퍼트리지 못하는 경우
+        boolean flag = true;
+        for (Integer i : answer) {
+            if(i!=-1){
+                flag = true;
+                break;
+            }
+            flag = false;
+        }
+        if(!flag){
             System.out.println(-1);
-        }else {
-            int val2 =answer.stream().filter(i -> i!=-999).min((o1, o2) -> o1-o2).orElse(234095);
-        System.out.println(val2-1);
+            return;
+        }
+        if (result == -22) {
+            System.out.println(0);
+        } else {
+            System.out.println(result);
         }
 
     }
@@ -56,7 +79,6 @@ public class BOJ17142 {
     private static void comb(int cnt, int start) {
         if (cnt == M) {
             bfs();
-
             return;
         }
         for (int i = start; i < comb.length; i++) {
@@ -68,64 +90,68 @@ public class BOJ17142 {
     }
 
     private static void bfs() {
+        visit = new boolean[N][N];
         //map 복사
-        int[][] temp = new int[map.length][map[0].length];
+        char[][] temp = new char[map.length][map[0].length];
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 if (map[i][j] == 1) {
-                    temp[i][j] = -222;
+                    temp[i][j] = '-';
                 } else if (map[i][j] == 2) {
-                    temp[i][j] = 1;
-                } else if(map[i][j]==0){
-                    continue;
+                    temp[i][j] = '*';
+                } else if (map[i][j] == 0) {
+                    temp[i][j] = '0';
                 }
             }
         }
         //바이러스 찍기
-        Queue<Integer[]> que = new LinkedList();
+        Queue<xxyy> que = new LinkedList();
         for (int i = 0; i < pos.size(); i++) {
             if (comb[i]) {
                 int x = pos.get(i)[0];
                 int y = pos.get(i)[1];
-                que.offer(new Integer[]{x, y,1});
-                visit[x][y]=true;
+                que.offer(new xxyy(x, y, '0'));
+                temp[x][y] = '*';
+                visit[x][y] = true;
 
             }
         }
-        int zero =0;
+        int zero = 0;
         while (!que.isEmpty()) {
-            Integer[] z = que.poll();
+            xxyy z = que.poll();
 
             for (int i = 0; i < 4; i++) {
-                int nx = z[0] + dir[i][0];
-                int ny = z[1] + dir[i][1];
+                int nx = z.x + dir[i][0];
+                int ny = z.y + dir[i][1];
 
                 if (nx < 0 || ny < 0 || nx >= temp.length || ny >= temp.length) continue;
-                if (temp[nx][ny] == 0&&!visit[nx][ny]) {
-                    visit[nx][ny]=true;
-                    temp[nx][ny] = temp[z[0]][z[1]] + 1;
-                    que.add(new Integer[]{nx, ny,temp[nx][ny]});
-                }else if (temp[nx][ny] == 1&&!visit[nx][ny]) {
-                    visit[nx][ny]=true;
-                    temp[nx][ny] = z[2];
-                    que.add(new Integer[]{nx, ny,temp[nx][ny]});
+
+                if (temp[nx][ny] != '-' && !visit[nx][ny]) {
+
+                    visit[nx][ny] = true;
+
+                    if (temp[nx][ny] == '*') {
+                        que.add(new xxyy(nx,ny,(char) (z.val + 1)));
+                    } else{
+                        temp[nx][ny] = (char) (z.val + 1);
+                        que.add(new xxyy(nx, ny, temp[nx][ny]));
+                    }
+
                 }
-
-
-
             }
         }
         boolean flag = true;
-        int max = Integer.MIN_VALUE;
+        int max = 0;
         out:
         for (int i = 0; i < temp.length; i++) {
             for (int j = 0; j < temp.length; j++) {
-                if (temp[i][j] == 0) {
-                    answer.add(-999);
+                if (temp[i][j] == '0') {
+                    answer.add(-1);
                     flag = false;
                     break out;
+                }else if(temp[i][j]!='-'&&temp[i][j]!='*'){
+                    max = Math.max(max, temp[i][j] - '0');
                 }
-                max = Math.max(max, temp[i][j]);
             }
         }
         if (flag) {
