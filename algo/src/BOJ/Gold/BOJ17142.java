@@ -51,7 +51,6 @@ public class BOJ17142 {
         //조합
         comb = new boolean[pos.size()];
         answer = new ArrayList<>();
-        count = 0;
         comb(0, 0);
 
         int result = answer.stream().filter(o1 -> o1!=-1).min((o1, o2) -> o1 - o2).orElse(-22);
@@ -116,7 +115,6 @@ public class BOJ17142 {
 
             }
         }
-        int zero = 0;
         while (!que.isEmpty()) {
             xxyy z = que.poll();
 
