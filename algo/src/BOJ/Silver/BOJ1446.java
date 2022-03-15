@@ -36,10 +36,6 @@ public class BOJ1446 {
         map = new int[1001][1001];
         visited = new int[1001];
 
-//        arr = new ArrayList<>();
-//        for (int i = 0; i < 1001; i++) {
-//            arr.add(new ArrayList<>());
-//        }
         //고속도로연결
         for (int i = 0; i < map.length-1; i++) {
             for (int j = 0; j < map.length; j++) {
