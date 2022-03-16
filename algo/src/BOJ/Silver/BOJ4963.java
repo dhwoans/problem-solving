@@ -7,13 +7,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-/**
- * 4963.섬의 개수
- *
- * bfs 8방탐색으로 섬개수 세는 문제
- *
- * 메모리초과?
- */
+
 public class BOJ4963 {
     static int r, c, count;
     static int[][] map;

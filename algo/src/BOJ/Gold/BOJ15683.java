@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class BOJ16683 {
+public class BOJ15683 {
 
     private static int answer;
     private static ArrayList<cctv> cctvs;

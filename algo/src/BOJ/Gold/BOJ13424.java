@@ -38,6 +38,7 @@ public class BOJ13424 {
                 arr.get(from).add(new node(to,cost));
                 arr.get(to).add(new node(from,cost));
             }
+
             int friends = Integer.parseInt(br.readLine());
             ints = pos = new int[friends][n + 1];
             st = new StringTokenizer(br.readLine());
@@ -45,6 +46,7 @@ public class BOJ13424 {
                 int room = Integer.parseInt(st.nextToken());
                 dij(j,room);
             }
+
             //최솟값 계산
             int min = Integer.MAX_VALUE;
             int answer =0;
