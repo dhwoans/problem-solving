@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class BOJ14888 {
     static int T,max,min;
-    static Stack stack;
+    static Stack<Integer> stack;
     static int[] num;
     static int[] temp;
     static boolean[] visit;
@@ -46,8 +46,6 @@ public class BOJ14888 {
                 if(i==2){sign[z++]='*'; }
                 if(i==3){sign[z++]='/'; }
 
-
-
             }
         }
         DFS(0);
@@ -74,35 +72,37 @@ public class BOJ14888 {
             stack.push(num[i]);
         }
         for (int i = 0; i < arr.length; i++) {
+            int num1 =0;
+            int num2 =0;
            switch (arr[i]){
                case '+':
-                   int num1= (int) stack.pop();
-                   int num2= (int) stack.pop();
+                   num1= stack.pop();
+                   num2= stack.pop();
 
                    stack.push(num1+num2);
                    break;
                case '-':
-                   int num3= (int) stack.pop();
-                   int num4= (int) stack.pop();
+                   num1= stack.pop();
+                   num2= stack.pop();
 
-                   stack.push(num3-num4);
+                   stack.push(num1-num2);
                    break;
                case '*':
-                   int num5= (int) stack.pop();
-                   int num6= (int) stack.pop();
+                   num1= stack.pop();
+                   num2= stack.pop();
 
-                   stack.push(num5*num6);
+                   stack.push(num1*num2);
                    break;
                case '/':
-                   int num7= (int) stack.pop();
-                   int num8= (int) stack.pop();
+                   num1= stack.pop();
+                   num2= stack.pop();
 
-                   stack.push(num7/num8);
+                   stack.push(num1/num2);
                    break;
            }
         }
-        max = Math.max(max, (Integer) stack.peek());
-        min = Math.min(min, (Integer) stack.peek());
+        max = Math.max(max, stack.peek());
+        min = Math.min(min, stack.peek());
         stack.clear();
     }
 }

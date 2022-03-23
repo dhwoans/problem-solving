@@ -8,49 +8,39 @@ import java.util.*;
 
 public class BOJ14719 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int H =Integer.parseInt(st.nextToken());
-        int W = Integer.parseInt(st.nextToken());
-        //정보입력
-        int[] map = new int[W];
+        int h = Integer.parseInt(st.nextToken());
+        int w = Integer.parseInt(st.nextToken());
+        int[][] arr = new int[h][w];
+
+        //정보 입력
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < map.length; i++) {
-            map[i]=Integer.parseInt(st.nextToken());
-        }
+        for (int i = 0; i < w; i++) {
+            int height =Integer.parseInt(st.nextToken());
+            for (int j = 0; j < h; j++) {
+                if (j >= height) continue;
+                arr[j][i]=1;
 
-        Stack<int[]> stack = new Stack<>();
-        stack.add(new int[]{0,map[0]});
-        int count =0;
-        for (int i = 1; i < map.length; i++) {
-            if(stack.peek()[1]>=map[i]){
-                count = Math.max(count,map[i]);
-            }else if(stack.peek()[1]<map[i]){
-                if(map[map.length-1]==0)continue;
-                int[] temp =stack.pop();
-                int val = Math.min(temp[1],count);
-                stack.add(new int[]{temp[0],val});
-                stack.add(new int[]{i,map[i]});
             }
-
         }
-        if(stack.peek()[0]!=map.length-1){
-            int[] temp =stack.pop();
-            int val = Math.min(temp[1],map[map.length-1]);
-            stack.add(new int[]{temp[0],val});
+        int sum =0;
+        for (int i = 0; i < arr.length; i++) {
+            boolean flag = false;
+            int start =0;
+            for (int j = 0; j < arr[i].length; j++) {
+                if(arr[i][j]==1){
+                    if (!flag){
+                        flag=true;
+                        start =j;
+                    }else{
+                        sum+= (j-start)-1;
+                        start=j;
 
-        }
-
-        int result =0;
-        for (int i = map.length-1; i >= 0; i--) {
-            if(stack.peek()[0]>=i){
-                stack.pop();
-            }else{
-                if(stack.peek()[1]-map[i]>0){
-                    result+=stack.peek()[1]-map[i];
+                    }
                 }
             }
         }
-        System.out.println(result);
+        System.out.println(sum);
     }
 }
