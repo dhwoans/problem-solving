@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
  * D             500
  * M             1000
  */
-public class Roman_to_Integer {
+public class RomantoInteger {
     static int check(String s) {
         int num = 0;
         for (int i = 0; i < s.length(); i++) {

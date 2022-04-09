@@ -1,6 +1,6 @@
 package Leetcode.easy;
 
-public class Max_Consecutive_Ones {
+public class MaxConsecutiveOnes {
     public static void main(String[] args) {
 
     }

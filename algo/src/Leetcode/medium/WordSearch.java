@@ -1,6 +1,6 @@
 package Leetcode.medium;
 
-public class Word_Search {
+public class WordSearch {
     static boolean[][] visit;
     static boolean flag;
 

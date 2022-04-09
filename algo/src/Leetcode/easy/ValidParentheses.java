@@ -2,7 +2,7 @@ package Leetcode.easy;
 
 import java.util.*;
 
-public class Valid_Parentheses {
+public class ValidParentheses {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {

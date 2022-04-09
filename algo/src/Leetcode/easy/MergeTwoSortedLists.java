@@ -3,7 +3,7 @@ package Leetcode.easy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Merge_Two_Sorted_Lists {
+public class MergeTwoSortedLists {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode dummy = new ListNode();
         ListNode merge = dummy;

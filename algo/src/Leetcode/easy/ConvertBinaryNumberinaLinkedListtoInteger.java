@@ -2,7 +2,7 @@ package Leetcode.easy;
 
 import java.util.ArrayList;
 
-public class Convert_Binary_Number_in_a_Linked_List_to_Integer {
+public class ConvertBinaryNumberinaLinkedListtoInteger {
     public static class ListNode {
         int val;
         ListNode next;

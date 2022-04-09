@@ -1,6 +1,6 @@
 package Leetcode.medium;
 
-public class Integer_to_Roman {
+public class IntegertoRoman {
     public String intToRoman(int num) {
         String[] five = {"","V","L","D"};
         String[] ten = {"I","X","C","M"};

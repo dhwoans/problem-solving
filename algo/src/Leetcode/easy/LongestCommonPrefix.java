@@ -1,6 +1,6 @@
 package Leetcode.easy;
 
-public class Longest_Common_Prefix {
+public class LongestCommonPrefix {
     /**
      *
      * @param strs

@@ -1,6 +1,6 @@
 package Leetcode.easy;
 
-public class Valid_Palindrome_II {
+public class ValidPalindromeII {
     public boolean validPalindrome(String s) {
         int start = 0;
         int end = s.length() - 1;

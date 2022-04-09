@@ -1,6 +1,6 @@
 package Leetcode.easy;
 
-public class Palindrome_Number {
+public class PalindromeNumber {
     public static void main(String[] args) {
         System.out.println(isPalindrome1(123456789));
     }

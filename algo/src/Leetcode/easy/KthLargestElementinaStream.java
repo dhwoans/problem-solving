@@ -2,7 +2,7 @@ package Leetcode.easy;
 
 import java.util.*;
 
-public class Kth_Largest_Element_in_a_Stream {
+public class KthLargestElementinaStream {
     private class KthLargest {
         int k;
         PriorityQueue<Integer> que = new PriorityQueue();

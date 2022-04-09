@@ -2,7 +2,7 @@ package Leetcode.medium;
 
 
 
-public class Next_Permutation {
+public class NextPermutation {
     public void nextPermutation(int[] nums) {
         int start = 0;
         int end =0;
