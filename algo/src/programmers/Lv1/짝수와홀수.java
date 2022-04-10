@@ -1,0 +1,13 @@
+package programmers.Lv1;
+
+public class 짝수와홀수 {
+    public String solution(int num) {
+        String answer = "";
+        if(num==0||num%2==0){
+            answer="Even";
+        }else{
+            answer="Odd";
+        }
+        return answer;
+    }
+}
