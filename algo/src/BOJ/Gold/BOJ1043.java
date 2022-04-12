@@ -1,4 +1,4 @@
-package BOJ.Silver;
+package BOJ.Gold;
 
 
 
@@ -28,6 +28,7 @@ public class BOJ1043 {
         st = new StringTokenizer(br.readLine());
         int howmany = Integer.parseInt(st.nextToken());
         know = new ArrayList<>();
+        
         for (int i = 0; i < howmany; i++) {
             know.add(Integer.parseInt(st.nextToken()));
         }
@@ -46,11 +47,11 @@ public class BOJ1043 {
         }
 
         //간선 연결
-        for (int i = 0; i < order.size(); i++) {
-            for (int j = 0; j < order.get(i).size()-1; j++) {
-                for (int k = j+1; k < order.get(i).size(); k++) {
-                    int x = order.get(i).get(j);
-                    int y = order.get(i).get(k);
+        for (ArrayList<Integer> integerArrayList : order) {
+            for (int j = 0; j < integerArrayList.size() - 1; j++) {
+                for (int k = j + 1; k < integerArrayList.size(); k++) {
+                    int x = integerArrayList.get(j);
+                    int y = integerArrayList.get(k);
 
                     map[x][y] = 1;
                     map[y][x] = 1;
@@ -62,10 +63,10 @@ public class BOJ1043 {
 
         //체크
         int answer = 0;
-        for (int i = 0; i < order.size(); i++) {
+        for (ArrayList<Integer> integers : order) {
             boolean flag = true;
-            for (int j = 0; j < order.get(i).size(); j++) {
-                int person = order.get(i).get(j);
+            for (int j = 0; j < integers.size(); j++) {
+                int person = integers.get(j);
                 if (visited[person]) {
                     flag = false;
                     break;
@@ -80,6 +81,7 @@ public class BOJ1043 {
         Queue<Integer> que = new LinkedList<>();
         for (Integer i : know) {
             que.add(i);
+
             visited[i] = true;
         }
         while (!que.isEmpty()) {
