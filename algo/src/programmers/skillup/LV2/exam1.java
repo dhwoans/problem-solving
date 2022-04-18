@@ -6,46 +6,38 @@ package programmers.skillup.LV2;
 
 
 
-import java.util.LinkedList;
+import java.util.HashMap;
+
 
 
 public class exam1 {
-    static int[][] dir ={{-1,0},{1,0},{0,1},{0,-1}};
-    static private  boolean[][] visited;
-
-
-    public static int solution(int[][] maps) {
-        visited = new boolean[maps.length][maps[0].length];
-
-        return  bfs(0, 0,0,maps);
-
-    }
-
-    static private int bfs(int i, int j,int val,int[][] maps) {
-        LinkedList<int[]> que = new LinkedList<>();
-        que.add(new int[]{i,j,0});
-        visited[i][j]=true;
-        while (!que.isEmpty()){
-            int[] z = que.poll();
-            if(z[0]==maps.length-1&&z[1]==maps[0].length-1){
-                return z[2];
-            }
-
-            for (int k = 0; k < 4; k++) {
-                int nx = z[0]+ dir[k][0];
-                int ny = z[1]+ dir[k][1];
-
-                if(nx<0||ny<0||nx>=maps.length||ny>=maps[0].length)continue;
-                if(maps[nx][ny]==1&&!visited[nx][ny]){
-                    visited[nx][ny]=true;
-                    que.add(new int[]{nx,ny,z[2]+1});
+    public int[] solution(int n, String[] words) {
+        int[] answer = {0,0};
+        HashMap<String, Integer> map = new HashMap<>();
+        char end =' ';
+        //맵에 담기
+        for (int i = 0; i < words.length; i++) {
+            //끝자 확인
+            if(i>=1){
+                if(end!=words[i].charAt(0)){
+                    System.out.println("철자틀림");
+                    answer[0]=(i%n)+1;
+                    answer[1]=(i/n)+1;
+                    return answer;
                 }
             }
-        }
-        return -1;
-    }
+            //중복확인
+            if(!map.containsKey(words[i])){
+                map.put(words[i],0);
+            }else{
+                answer[0]=(i%n)+1;
+                answer[1]=(i/n)+1;
+                return answer;
+            }
+            end = words[i].charAt(words[i].length()-1);
 
-    public static void main(String[] args) {
-        System.out.println(solution(new int[][]{{1,0,1,1,1},{1,0,1,0,1},{1,0,1,1,1},{1,1,1,0,1},{0,0,0,0,1}}));
+        }
+
+        return answer;
     }
 }
