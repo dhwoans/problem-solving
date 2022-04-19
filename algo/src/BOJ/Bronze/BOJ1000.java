@@ -3,6 +3,7 @@ package BOJ.Bronze;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class BOJ1000 {
@@ -13,6 +14,7 @@ public class BOJ1000 {
         int B = Integer.parseInt(st.nextToken());
         int answer = A+B;
         System.out.println(answer);
+
 
     }
 }
