@@ -1,3 +1,5 @@
+package leetcode
+
 class BinarySearch {
     fun search(nums: IntArray, target: Int): Int {
         var answer = -1

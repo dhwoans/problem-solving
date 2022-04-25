@@ -1,3 +1,5 @@
+package leetcode
+
 class BinaryPrefixDivisibleBy5 {
     fun prefixesDivBy5(nums: IntArray): List<Boolean> {
         var sum = 0
