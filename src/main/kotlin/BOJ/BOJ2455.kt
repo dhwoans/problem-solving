@@ -11,7 +11,6 @@ fun main(args: Array<String>) = with(BufferedReader(InputStreamReader(System.`in
         persons += (out - inn)
         if (max < persons) max = persons
     }
-
     println(max)
 }
 
