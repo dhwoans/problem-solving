@@ -7,18 +7,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
-/**
- * @packageName : BOJ.Silver
- * @fileName : BOJ1106
- * @date : 2021-12-22
- * @language : JAVA
- * @classification :
- * @time_limit : 2sec
- * @required_time : 00:40 ~ 01:22
- * @submissions : 1
- * @description :
- **/
-public class BOJ1106 {//풀이중
+
+public class BOJ1106 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
