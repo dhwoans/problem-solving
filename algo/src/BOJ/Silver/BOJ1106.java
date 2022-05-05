@@ -16,7 +16,7 @@ public class BOJ1106 {
         int C = Integer.parseInt(st.nextToken());
         int N = Integer.parseInt(st.nextToken());
         int[][] dp = new int[N][1001];
-        final int INF = 987654321;
+
 
         int[][] info = new int[N][2];
         for (int i = 0; i < N; i++) {
