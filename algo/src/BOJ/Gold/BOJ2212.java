@@ -1,52 +1,40 @@
 package BOJ.Gold;
 
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.StringTokenizer;
-import java.util.stream.Collectors;
+
 
 public class BOJ2212 {
-
-    private static int top;
-    private static List<Integer> arr;
-    private static boolean[] booleans;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        top = Integer.parseInt(br.readLine());
-        arr = new ArrayList<>();
+        int k = Integer.parseInt(br.readLine())-1;
+        int[] arr = new int[n];
+        int[] partition  = new int[n-1];
+        int answer= 0;
         StringTokenizer st = new StringTokenizer(br.readLine());
+
         for (int i = 0; i < n; i++) {
-            arr.add(Integer.parseInt(st.nextToken()));
+            arr[i]=Integer.parseInt(st.nextToken());
         }
-        arr = arr.stream().distinct().collect(Collectors.toList());
-        booleans = new boolean[arr.size() - 1];
-        Dfs(0);
 
+        Arrays.sort(arr);
 
-    }
-
-    private static void Dfs(int cnt) {
-        if(cnt==top-1){
-            //집중국 세우기
-            build();
-            return;
-
+        for (int i = 0; i < partition.length; i++) {
+            partition[i]=Math.abs(arr[i]-arr[i+1]);
         }
-        for (int i = 0; i < booleans.length ; i++) {
-            if(booleans[i])continue;
-            booleans[i]=true;
-            Dfs(cnt+1);
-            booleans[i]=false;
+
+        Arrays.sort(partition);
+
+        for (int i = 0; i < partition.length-k; i++) {
+            answer+=partition[i];
         }
-    }
 
-    private static void build() {
-       //자르기
-
+        System.out.println(answer);
     }
 }
