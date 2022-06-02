@@ -3,8 +3,6 @@ package BOJ.Silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ1783 {
@@ -19,27 +17,16 @@ public class BOJ1783 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         c = Integer.parseInt(st.nextToken());
         r = Integer.parseInt(st.nextToken());
-        answer = 1;
+        int answer =1;
+        //세로 1일때
+        if(c==1) answer = 1;
+        //세로 2일때
+        else if(c==2) answer = Math.min(4,(r+1)/2);
+        //가로 7미만
+        else if(r<7) answer = Math.min(4,r);
+        //그외
+        else answer = r-7+5;
 
-        Bfs(r -1,0);
         System.out.println(answer);
-    }
-
-    private static void Bfs(int x,int y) {
-        Queue<int[]> que = new LinkedList<>();
-        que.add(new int[]{x,y,1});
-
-        while(!que.isEmpty()){
-            int[] z = que.poll();
-
-            answer = Math.max(answer, z[2]);
-            for (int i = 0; i < 4; i++) {
-                int nx = z[0]+dir[i][0];
-                int ny = z[1]+dir[i][1];
-
-                if(nx<0||ny<0||nx>=r||ny>=c)continue;
-                que.add(new int[]{nx,ny,z[2]+1});
-            }
-        }
     }
 }
