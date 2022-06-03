@@ -11,7 +11,6 @@ public class BestTimetoBuyandSellStock {
                 answer = price - buy;
             }
         }
-
         return answer;
     }
 }
