@@ -3,10 +3,9 @@ package BOJ.Silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * 첫째 줄에는 산술평균을 출력한다. 소수점 이하 첫째 자리에서 반올림한 값을 출력한다.
@@ -17,66 +16,53 @@ import java.util.Scanner;
  * <p>
  * 넷째 줄에는 범위를 출력한다.
  */
-public class BOJ2108 {//풀이중
+public class BOJ2108 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
-        int num = 0;
-        int max = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
         StringBuilder sb = new StringBuilder();
-        double sum1=0;
-        //배열담기
-        for (int i = 0; i < N; i++) {
-            num = Integer.parseInt(br.readLine());
-            max = Math.max(max, num);
-            min = Math.min(min, num);
-
-            arr[i] = num;
-            sum1+=num;
+        //숫자 담기
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
         }
         Arrays.sort(arr);
 
         //산술평균
-        double avg = 0;
+        int sum = Arrays.stream(arr).sum();
+        double mean = (double) sum / n;
 
-        avg = sum1/N;
-        sb.append(Math.round(avg)+"\n");
+        sb.append(Math.round(mean)).append("\n");
+
         //중앙값
-        int center = 0;
-        center = arr[N / 2];
-        sb.append(center+"\n");
+        int median =arr[n/2];
+
+        sb.append(median).append("\n");
+
         //최빈값
-        int[] many = new int[8001];
+        int[] frequency = new int[8001];
         for (int i : arr) {
-            many[i+4000]++;
+            if(i<=0) frequency[Math.abs(i)]++;
+            else frequency[i+4000]++;
         }
-
-        int max3= Integer.MIN_VALUE;
-        for (int i : many) {
-            if(i>max3){
-                max3=i;
+        int max  = Arrays.stream(frequency).max().getAsInt();
+        ArrayList<Integer> answer = new ArrayList<>();
+        for (int i = 0; i < frequency.length; i++) {
+            if(frequency[i]==max){
+                int temp = i*-1;
+                if(i>4000) temp=i-4000;
+                answer.add(temp);
             }
         }
-        ArrayList<Integer> same = new ArrayList<>();
-        int answer = 0;
-        for (int i = 0; i < many.length; i++) {
-            if(many[i]==0)continue;
-            if(many[i]==max3){
-                same.add(i-4000);
-
-            }
+        if(answer.size()==1){
+            sb.append(answer.get(0)).append("\n");
+        }else{
+            Collections.sort(answer);
+            sb.append(answer.get(1)).append("\n");
         }
-        same.sort((o1, o2) -> o1-o2);
-        answer= same.get(1);
-        sb.append(answer+"\n");
-        //범위
-            int rang = arr[N - 1] - arr[0];
-            sb.append(rang);
 
-        System.out.printf(sb.toString());
-
+        //최대 최소
+        sb.append(arr[n-1]-arr[0]);
+        System.out.print(sb);
     }
 }
