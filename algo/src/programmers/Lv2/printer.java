@@ -4,7 +4,7 @@ import java.util.*;
 
 public class printer {
     public int solution(int[] priorities, int location) {
-        int point = priorities.length-1;
+        int pointer = priorities.length-1;
         int answer = 0;
         Queue<int[]> que = new LinkedList<>();
 
@@ -12,13 +12,14 @@ public class printer {
             que.add(new int[]{i,priorities[i]});
         }
         Arrays.sort(priorities);
+
         while(true){
             if(que.isEmpty())break;
-            if(que.peek()[1]>=priorities[point]){
+            if(que.peek()[1]>=priorities[pointer]){
                 int[] z = que.poll();
                 answer++;
                 if(z[0]==location)break;
-                point--;
+                pointer--;
             }else{
                 que.add(que.poll());
             }
