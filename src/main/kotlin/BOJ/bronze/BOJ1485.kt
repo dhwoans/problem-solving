@@ -1,3 +1,5 @@
+package BOJ.bronze
+
 import kotlin.math.pow
 
 class xy(val x:Int, val y:Int)
