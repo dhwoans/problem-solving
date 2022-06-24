@@ -23,7 +23,7 @@ public class best_album {
     }
     public static void main(String[] args) {
         int[] answer =solution(new String[]{"classic","classic", "classic", "pop"},new int[]{800, 150, 150, 2500});
-        Arrays.stream(answer).forEach(value -> System.out.println(value));
+        Arrays.stream(answer).forEach(System.out::println);
     }
 
     public static int[] solution(String[] genres, int[] plays) {
