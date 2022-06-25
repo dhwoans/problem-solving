@@ -1,7 +1,6 @@
 package programmers.Lv2;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class 가장큰수 {
     public String solution(int[] numbers) {

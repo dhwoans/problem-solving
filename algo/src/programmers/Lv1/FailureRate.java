@@ -25,10 +25,11 @@ public class FailureRate {
         int[] arr = new int[N + 2]; // 머무는 사람 수
         List<info> level = new ArrayList<>();   // 답
         int player = stages.length;
-        ArrayList<Integer> answer = new ArrayList<>();
+
         for (int stage : stages) {
             arr[stage]++;
         }
+
         for (int i = 1; i < arr.length-1; i++) {
             double val = player==0?0:(double) arr[i]/player;
             level.add(new info(i,val));
