@@ -22,8 +22,8 @@ public class BOJ2624 {
         arr.sort((o1, o2) -> o1[0]-o2[0]);
 
         for (int i = 1; i < dp.length; i++) {
-            dp[0][i - 1] = 1;
-            for (int num = 1; num <= arr.get(i-1)[1]; num++) {
+            dp[i-1][0] = 1;
+            for (int num = 0; num <= arr.get(i-1)[1]; num++) {
                 for (int j = arr.get(i-1)[0]*num; j < dp[i].length; j++) {
                     dp[i][j]+=dp[i-1][j-arr.get(i-1)[0]*num];
 
