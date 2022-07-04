@@ -44,6 +44,7 @@ public class BOJ14427 {
     private static int update(int start, int end, int node, int index) {
         //범위 벗어남
         if (start > index || index > end) return tree[node];
+
         if (start == end) return tree[node]= index;
 
         int mid = (start + end) / 2;
