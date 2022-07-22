@@ -7,6 +7,6 @@ fun main() {
 
 }
 
-fun find(n:Int,r:Int,c:Int):Int{
+private fun find(n:Int,r:Int,c:Int):Int{
     return if(n==0) 0 else 2*(r%2)+(c%2) + 4*find(n-1,r/2,c/2)
 }
