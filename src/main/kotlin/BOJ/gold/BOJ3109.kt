@@ -1,7 +1,7 @@
 package BOJ.gold
 
 
-val dir = Array(3) { IntArray(2) }.apply {
+private val dir = Array(3) { IntArray(2) }.apply {
     this[0] = intArrayOf(-1, 1)
     this[1] = intArrayOf(0, 1)
     this[2] = intArrayOf(1, 1)
@@ -42,8 +42,6 @@ fun dfs(r: Int, c: Int) {
             if (visited[nr][nc] || map[nr][nc] == 'x') continue
             dfs(nr, nc)
             if (flag) return
-
         }
-
     }
 }
