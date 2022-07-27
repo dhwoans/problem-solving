@@ -6,8 +6,8 @@ private val dir = Array(3) { IntArray(2) }.apply {
     this[1] = intArrayOf(0, 1)
     this[2] = intArrayOf(1, 1)
 }
-lateinit var map: Array<CharArray>
-lateinit var visited: Array<BooleanArray>
+private lateinit var map: Array<CharArray>
+private lateinit var visited: Array<BooleanArray>
 var count = 0
 var flag = false
 
