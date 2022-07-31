@@ -27,7 +27,7 @@ fun main() {
     println(count)
 }
 
-fun dfs(r: Int, c: Int) {
+private fun dfs(r: Int, c: Int) {
     visited[r][c] = true
 
     if (c == map[0].size - 1) {

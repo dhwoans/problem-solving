@@ -2,9 +2,9 @@ package BOJ
 
 import java.io.BufferedReader
 
-lateinit var arr:CharArray
-lateinit var visited:BooleanArray
-lateinit var str:String
+private lateinit var arr:CharArray
+private lateinit var visited:BooleanArray
+private lateinit var str:String
 
 fun main() = with(BufferedReader(System.`in`.bufferedReader())) {
     arr = readLine().toCharArray()
