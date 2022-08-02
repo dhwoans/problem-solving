@@ -18,9 +18,9 @@ fun main() {
     zero = ArrayList()
 
     for (i in 0 until map.size) {
-        val str = br.readLine().split(" ").map{it.toInt()}.toIntArray()
-        for (j in 0 until str.size) {
-            map[i][j] = str[j]
+        val str = br.readLine().toString()
+        for (j in 0 until str.length) {
+            map[i][j] = str[j] - '0'
             if (map[i][j] == 0) zero.add(intArrayOf(i, j))
         }
     }
@@ -47,7 +47,7 @@ fun main() {
 
     for (i in map) {
         for (j in i) {
-            print("$j ")
+            print(j)
         }
         println()
     }
