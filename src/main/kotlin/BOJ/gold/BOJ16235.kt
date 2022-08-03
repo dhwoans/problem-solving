@@ -18,7 +18,7 @@ fun main() {
     val br = System.`in`.bufferedReader()
     val (n,m,k) = br.readLine().split(" ").map{it.toInt()}
     val map = Array(n){IntArray(n){5}}
-    var que = PriorityQueue<tree>()
+    var que = PriorityQueue<Tree>()
     //추기양분
     val energy = Array(n){IntArray(n)}.apply {
         repeat(n){
@@ -28,13 +28,13 @@ fun main() {
     //나무
     repeat(m){
         val (r,c,age) = br.readLine().split(" ").map { it.toInt() }
-        que.add(tree(r-1,c-1,age))
+        que.add(Tree(r-1,c-1,age))
     }
 
     repeat(k){
         //봄
-        val alive = PriorityQueue<tree>()
-        val dead:Queue<tree> = LinkedList()
+        val alive = PriorityQueue<Tree>()
+        val dead:Queue<Tree> = LinkedList()
         while(que.isNotEmpty()) {
             val i = que.poll()
             if(map[i.r][i.c]>=i.age){
@@ -51,7 +51,7 @@ fun main() {
             map[tree.r][tree.c]+=tree.age/2
         }
         //가을
-        val temp = PriorityQueue<tree>(alive)
+        val temp = PriorityQueue<Tree>(alive)
         while(alive.isNotEmpty()){
             val t = alive.poll()
             if(t.age%5==0) {
@@ -60,7 +60,7 @@ fun main() {
                     val nx = t.r + i[0]
                     val ny = t.c + i[1]
                     if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue
-                    temp.add(tree(nx, ny, 1))
+                    temp.add(Tree(nx, ny, 1))
                 }
             }
         }
@@ -75,8 +75,8 @@ fun main() {
     println(que.size)
 }
 
-data class tree(val r:Int,val c:Int,var age:Int):Comparable<tree>{
-    override fun compareTo(other: tree): Int {
+private data class Tree(val r:Int, val c:Int, var age:Int):Comparable<Tree>{
+    override fun compareTo(other: Tree): Int {
         return age-other.age
     }
 

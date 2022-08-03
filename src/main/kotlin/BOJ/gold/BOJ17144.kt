@@ -1,7 +1,7 @@
 package BOJ.gold
 
 private lateinit var map: Array<IntArray>
-private lateinit var order: ArrayList<dust>
+private lateinit var order: ArrayList<Dust>
 private val dir = Array(4) { IntArray(2) }.apply {
     this[0] = intArrayOf(-1, 0)
     this[1] = intArrayOf(1, 0)
@@ -55,7 +55,7 @@ private fun spread(r: Int, c: Int) {
         if (nr < 0 || nc < 0 || nr >= map.size || nc >= map[0].size) continue
         if (map[nr][nc] != -1) {
             count++
-            order.add(dust(nr, nc, map[r][c] / 5))
+            order.add(Dust(nr, nc, map[r][c] / 5))
         }
     }
     //남은 미세먼지
@@ -135,4 +135,4 @@ private fun swap(r:Int,c:Int,wise:Int){
     }
 }
 
-private data class dust(val r: Int, val c: Int, val dust: Int)
+private data class Dust(val r: Int, val c: Int, val dust: Int)
