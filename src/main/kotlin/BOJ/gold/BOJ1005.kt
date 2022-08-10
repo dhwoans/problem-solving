@@ -15,7 +15,7 @@ fun main() {
     repeat(t) {
 
         val (n,k) = readLine()!!.split(" ").map { it.toInt() }
-        cost = readLine()!!.split(" ").map { it.toInt() }.toIntArray()
+        cost = intArrayOf(0)+readLine()!!.split(" ").map { it.toInt() }.toIntArray()
 
         indegree = IntArray(n + 1)
         arr = ArrayList<ArrayList<Int>>().apply {
@@ -42,14 +42,14 @@ private fun bfs() {
     for (i in 1 until indegree.size) {
         if (indegree[i] == 0) {
             que.add(i)
-            time[i]=cost[i-1]
+            time[i]=cost[i]
         }
     }
     while (que.isNotEmpty()) {
         val temp = que.poll()
 
         for (i in arr[temp]) {
-            time[i] = max(time[i],time[temp]+cost[i-1])
+            time[i] = max(time[i],time[temp]+cost[i])
             if (--indegree[i] == 0) que.add(i)
         }
     }

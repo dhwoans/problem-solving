@@ -37,7 +37,7 @@ fun main() {
         print("${stack.pop()} ")
     }
 }
-fun lowerbound(x:ArrayList<Int>,target:Int):Int{
+private fun lowerbound(x:ArrayList<Int>,target:Int):Int{
     var start =0
     var end = x.lastIndex
     while(start<=end){
