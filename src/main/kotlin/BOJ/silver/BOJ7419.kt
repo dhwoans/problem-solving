@@ -7,5 +7,4 @@ fun main() {
         if(it=='1') count++
     }
     println(count)
-
 }
