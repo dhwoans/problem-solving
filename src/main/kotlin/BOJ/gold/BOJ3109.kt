@@ -8,8 +8,8 @@ private val dir = Array(3) { IntArray(2) }.apply {
 }
 private lateinit var map: Array<CharArray>
 private lateinit var visited: Array<BooleanArray>
-var count = 0
-var flag = false
+private var count = 0
+private var flag = false
 
 fun main() {
     val br = System.`in`.bufferedReader()
