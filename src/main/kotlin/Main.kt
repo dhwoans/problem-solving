@@ -1,37 +1,36 @@
-import kotlin.math.abs
+import kotlin.math.pow
 
 fun main(args: Array<String>) {
-    val t = readLine()!!.toInt()
-    repeat(t) {
-        val str = readLine()!!.toString()
-        val sb =StringBuilder()
-        val arr = Array(str.length) { IntArray(2) }.apply {
-            repeat(str.length) {
-                this[it] = intArrayOf(it, str[it].code - 'a'.code + 1)
-            }
-//            this.sortBy { it[1] }
-            this.sortWith(compareBy ({it[1] },{it[0]}))
-        }
-        var index = arr.size
-        var sum = 0
-        var flag = false
-        for(i in 0 until arr.size){
-            if(i!=0&&arr[i][0]==0){
-                flag = true
-                index = i+1
-                break
-            }
-            if(i==arr.size-1)continue
-            sum += abs(arr[i][1]-arr[i+1][1])
-            sb.append(arr[i][0]+1).append(" ")
-        }
-        if(flag){
-            sb.append(1).reverse()
-        }else{
-            sb.append(arr[arr.size-1][0]+1)
-        }
-        println("${sum} ${index}")
-        println(sb)
 
+}
+
+fun solution(today: String, terms: Array<String>, privacies: Array<String>): IntArray {
+    val answer: ArrayList<Int> = ArrayList()
+    val (ty, tm, td) = today.split(".").map(String::toInt)
+    val map = HashMap<String, Int>().apply {
+        repeat(terms.size) {
+            val (a, b) = terms[it].split(" ")
+            this[a] = b.toInt()
+        }
     }
+    repeat(privacies.size) {
+        val (date, term) = privacies[it].split(" ")
+        var (y, m, d) = date.split(".").map(String::toInt)
+        m += map[term]!!
+        if (m > 12) {
+            y += m/12
+            m %= 12
+
+        }
+        if(d==1){
+            m--
+            d=28
+        } else d--
+
+        println("${y} ${m} ${d}")
+        if (ty > y || ty == y && tm > m || ty == y && tm == m && td > d) {
+            answer.add(it+1)
+        }
+    }
+    return answer.toIntArray()
 }

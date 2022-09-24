@@ -1,9 +1,9 @@
 package BOJ.silver
 
-val count = 0
-var white = 0
-var blue = 0
-lateinit var map: Array<IntArray>
+private val count = 0
+private var white = 0
+private var blue = 0
+private lateinit var map: Array<IntArray>
 
 fun main() {
     val br = System.`in`.bufferedReader()
