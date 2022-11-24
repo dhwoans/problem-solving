@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
  **/
 public class BOJ1967 {
 
-    private static ArrayList<ArrayList<node>> arr;
+    private static ArrayList<ArrayList<Node>> arr;
     private static int reuslt_search;
     private static int answer;
     private static boolean[] visited;
@@ -41,8 +41,8 @@ public class BOJ1967 {
             int to = Integer.parseInt(st.nextToken());
             int len = Integer.parseInt(st.nextToken());
 
-            arr.get(from).add(new node(to, len));
-            arr.get(to).add(new node(from, len));
+            arr.get(from).add(new Node(to, len));
+            arr.get(to).add(new Node(from, len));
         }
 
         reuslt_search = 0;
@@ -59,7 +59,7 @@ public class BOJ1967 {
 
     private static void dfs(int next, int sum) {
         for (int i = 0; i < arr.get(next).size(); i++) {
-            node temp = arr.get(next).get(i);
+            Node temp = arr.get(next).get(i);
             if (!visited[temp.to]) {
                 visited[temp.to] = true;
                 dfs(temp.to, sum + temp.value);

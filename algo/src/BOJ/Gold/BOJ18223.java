@@ -20,7 +20,7 @@ import java.util.StringTokenizer;
  * @description :
  **/
 public class BOJ18223 {
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static int V,E,P;
     static int visit[];
     static final int INF = 987654321;
@@ -44,8 +44,8 @@ public class BOJ18223 {
             int to = Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
             
-            arr.get(from).add(new node(to,cost));
-            arr.get(to).add(new node(from,cost));
+            arr.get(from).add(new Node(to,cost));
+            arr.get(to).add(new Node(from,cost));
             
         }
 
@@ -66,21 +66,21 @@ public class BOJ18223 {
     }
 
     private static void Dij(int start) {
-        PriorityQueue<node> que = new PriorityQueue<>();
-        que.add(new node(start,0));
+        PriorityQueue<Node> que = new PriorityQueue<>();
+        que.add(new Node(start,0));
         visit[start]=0;
 
         while (!que.isEmpty()){
-            node z = que.poll();
+            Node z = que.poll();
 
             if(visit[z.to]<z.value)continue;
 
             for (int i = 0; i < arr.get(z.to).size(); i++) {
-                node next = arr.get(z.to).get(i);
+                Node next = arr.get(z.to).get(i);
 
                 if(visit[next.to]>next.value+z.value){
                     visit[next.to]=next.value+z.value;
-                    que.add(new node(next.to,next.value+z.value));
+                    que.add(new Node(next.to,next.value+z.value));
                 }
             }
         }

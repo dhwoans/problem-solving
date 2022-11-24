@@ -11,8 +11,8 @@ public class BOJ14621 {
     static int v, e, cnt;
     static boolean[] visit;
     static char[] wm;
-    static ArrayList<ArrayList<node>> arr;
-    static PriorityQueue<node> pq;
+    static ArrayList<ArrayList<Node>> arr;
+    static PriorityQueue<Node> pq;
 
 
     public static void main(String[] args) throws IOException {
@@ -39,8 +39,8 @@ public class BOJ14621 {
             int value = Integer.parseInt(st.nextToken());
 
             //가성비 낮은 길도 입력값에 있음
-            arr.get(to).add(new node(from, value));
-            arr.get(from).add(new node(to, value));
+            arr.get(to).add(new Node(from, value));
+            arr.get(from).add(new Node(to, value));
         }
         System.out.println(Prim());
     }
@@ -50,10 +50,10 @@ public class BOJ14621 {
         int ret = 0;
         pq = new PriorityQueue<>();
         visit = new boolean[v + 1];
-        pq.add(new node(1, 0));
+        pq.add(new Node(1, 0));
 
         while (!pq.isEmpty()) {
-            node n = pq.poll();
+            Node n = pq.poll();
 
             //값뽑아내기
             if (visit[n.to]) continue;
@@ -64,7 +64,7 @@ public class BOJ14621 {
                 return ret;
             }
             for (int i = 0; i < arr.get(n.to).size(); i++) {
-                node next = arr.get(n.to).get(i);
+                Node next = arr.get(n.to).get(i);
                 if (wm[n.to] == wm[next.to] || visit[next.to]) continue;
                 pq.add(next);
             }

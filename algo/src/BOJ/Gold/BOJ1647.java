@@ -16,9 +16,9 @@ import java.util.StringTokenizer;
  */
 public class BOJ1647 {
     static int v,e;
-    static ArrayList<ArrayList<node>>arr;
+    static ArrayList<ArrayList<Node>>arr;
     static boolean[] visit;
-    static PriorityQueue<node> pq;
+    static PriorityQueue<Node> pq;
     static int max;
 
 
@@ -31,7 +31,7 @@ public class BOJ1647 {
         //인접 리스트 생성
         arr= new ArrayList<>();
         for (int i = 0; i < v + 1; i++) {
-            arr.add(new ArrayList<node>());
+            arr.add(new ArrayList<Node>());
         }
         //배열에 담기
         for (int i = 0; i < e; i++) {
@@ -40,8 +40,8 @@ public class BOJ1647 {
             int to = Integer.parseInt(st.nextToken());
             int value = Integer.parseInt(st.nextToken());
 
-            arr.get(from).add(new node(to,value));
-            arr.get(to).add(new node(from,value));
+            arr.get(from).add(new Node(to,value));
+            arr.get(to).add(new Node(from,value));
         }
 
         System.out.println(prim()-max);
@@ -52,10 +52,10 @@ public class BOJ1647 {
         max= 0;
         visit = new boolean[v+1];
         pq = new PriorityQueue<>();
-        pq.add(new node(1,0));
+        pq.add(new Node(1,0));
 
         while (!pq.isEmpty()){
-            node n = pq.poll();
+            Node n = pq.poll();
 
             if(visit[n.to])continue;
             visit[n.to]=true;
@@ -66,7 +66,7 @@ public class BOJ1647 {
                 return ret;
             }
             for (int i = 0; i < arr.get(n.to).size(); i++) {
-                node next = arr.get(n.to).get(i);
+                Node next = arr.get(n.to).get(i);
                 if(visit[next.to])continue;
                 pq.add(next);
             }

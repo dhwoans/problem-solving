@@ -20,7 +20,7 @@ import java.util.StringTokenizer;
  * @description :
  **/
 public class BOJ5972 {
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static int[] visit;
     static final int INF =987654321;
 
@@ -44,8 +44,8 @@ public class BOJ5972 {
             int to = Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
             
-            arr.get(from).add(new node(to,cost));
-            arr.get(to).add(new node(from,cost));
+            arr.get(from).add(new Node(to,cost));
+            arr.get(to).add(new Node(from,cost));
         }
 
         Dji();
@@ -53,20 +53,20 @@ public class BOJ5972 {
     }
 
     private static void Dji() {
-        PriorityQueue<node> que = new PriorityQueue<>();
-        que.add(new node(1,0));
+        PriorityQueue<Node> que = new PriorityQueue<>();
+        que.add(new Node(1,0));
         visit[1]=0;
 
         while (!que.isEmpty()){
-            node z = que.poll();
+            Node z = que.poll();
 
             if(visit[z.to]<z.value)continue;
 
             for (int i = 0; i < arr.get(z.to).size(); i++) {
-                node next= arr.get(z.to).get(i);
+                Node next= arr.get(z.to).get(i);
                 if(visit[next.to]>next.value+z.value){
                     visit[next.to]=next.value+z.value;
-                    que.add(new node(next.to,next.value+z.value));
+                    que.add(new Node(next.to,next.value+z.value));
                 }
             }
         }

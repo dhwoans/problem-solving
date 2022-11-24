@@ -21,7 +21,7 @@ import java.util.StringTokenizer;
  **/
 public class BOJ1238 {
     static int N,M,X;
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static int[] visit;
     public static void main(String[] args) throws IOException {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
@@ -44,7 +44,7 @@ public class BOJ1238 {
             int to = Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
             
-            arr.get(from).add(new node(to,cost));
+            arr.get(from).add(new Node(to,cost));
             
         }
         //X로 오는 길
@@ -64,22 +64,22 @@ public class BOJ1238 {
     }
 
     private static void Dij(int X) {
-        PriorityQueue<node> pq = new PriorityQueue<>();
-        pq.add(new node(X,0));
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        pq.add(new Node(X,0));
         Arrays.fill(visit,Integer.MAX_VALUE);
         visit[X]=0;
 
         while(!pq.isEmpty()){
-            node z = pq.poll();
+            Node z = pq.poll();
 
             if(visit[z.to]<z.value)continue;
 
 
                 for (int j = 0; j < arr.get(z.to).size(); j++) {
-                    node next = arr.get(z.to).get(j);
+                    Node next = arr.get(z.to).get(j);
                     if(visit[next.to]>visit[z.to]+next.value){
                         visit[next.to]=visit[z.to]+next.value;
-                        pq.add(new node(next.to,visit[next.to]));
+                        pq.add(new Node(next.to,visit[next.to]));
                     }
                 }
 

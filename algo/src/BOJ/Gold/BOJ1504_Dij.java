@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
  * 다익스트라 문제->o
  */
 public class BOJ1504_Dij {
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static int n;
     static int visit[];
 
@@ -40,8 +40,8 @@ public class BOJ1504_Dij {
             int to = Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
 
-            arr.get(from).add(new node(to, cost));
-            arr.get(to).add(new node(from, cost));
+            arr.get(from).add(new Node(to, cost));
+            arr.get(to).add(new Node(from, cost));
         }
         st = new StringTokenizer(br.readLine());
         int node1 = Integer.parseInt(st.nextToken());
@@ -73,21 +73,21 @@ public class BOJ1504_Dij {
     }
 
     private static void dij(int start) {
-        PriorityQueue<node> pq = new PriorityQueue<>();
-        pq.add(new node(start, 0));
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        pq.add(new Node(start, 0));
         visit = new int[n + 1];
         Arrays.fill(visit, 200000000);
         visit[start] = 0;
         while (!pq.isEmpty()) {
-            node z = pq.poll();
+            Node z = pq.poll();
 
             if (visit[z.to] < z.value) continue;
 
             for (int i = 0; i < arr.get(z.to).size(); i++) {
-                node next = arr.get(z.to).get(i);
+                Node next = arr.get(z.to).get(i);
                 if (visit[next.to] > visit[z.to] + next.value) {
                     visit[next.to] = visit[z.to] + next.value;
-                    pq.add(new node(next.to, visit[next.to]));
+                    pq.add(new Node(next.to, visit[next.to]));
                 }
             }
 

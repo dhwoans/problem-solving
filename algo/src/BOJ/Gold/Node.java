@@ -1,16 +1,16 @@
 package BOJ.Gold;
 
-class node implements Comparable<node> {
+class Node implements Comparable<Node> {
     int to;
     int value;
 
-    node(int to, int value) {
+    Node(int to, int value) {
         this.to = to;
         this.value = value;
     }
 
     @Override
-    public int compareTo(node o) {
+    public int compareTo(Node o) {
         return this.value - o.value;
     }
 }

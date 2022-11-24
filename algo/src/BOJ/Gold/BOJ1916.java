@@ -21,7 +21,7 @@ import java.util.StringTokenizer;
  * 다익스트라 풀기
  **/
 public class BOJ1916 {
-    static ArrayList<ArrayList<node>>arr;
+    static ArrayList<ArrayList<Node>>arr;
     static int[] visit;
     static int INF =987654321;
 
@@ -44,7 +44,7 @@ public class BOJ1916 {
             int to =Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
             
-            arr.get(from).add(new node(to,cost));
+            arr.get(from).add(new Node(to,cost));
         }
         
         st = new StringTokenizer(br.readLine());
@@ -57,19 +57,19 @@ public class BOJ1916 {
 
     private static void Dji(int start) {
         Arrays.fill(visit,INF);
-        PriorityQueue<node> que = new PriorityQueue<>();
-       que.add(new node(start,0));
+        PriorityQueue<Node> que = new PriorityQueue<>();
+       que.add(new Node(start,0));
        visit[start]=0;
        while (!que.isEmpty()){
-           node z = que.poll();
+           Node z = que.poll();
 
            if(visit[z.to]<z.value)continue;
 
            for (int i = 0; i < arr.get(z.to).size(); i++) {
-               node next = arr.get(z.to).get(i);
+               Node next = arr.get(z.to).get(i);
                if(visit[next.to]>visit[z.to]+next.value){
                    visit[next.to]=visit[z.to]+next.value;
-                   que.add(new node(next.to,visit[next.to]));
+                   que.add(new Node(next.to,visit[next.to]));
                }
            }
        }

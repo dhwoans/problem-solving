@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class BOJ1167 {
 
-    private static ArrayList<ArrayList<node>> arr;
+    private static ArrayList<ArrayList<Node>> arr;
     private static boolean[] visited;
     private static int research_node;
     private static int answer;
@@ -27,7 +27,7 @@ public class BOJ1167 {
         for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int num = Integer.parseInt(st.nextToken());
-            ArrayList<node> info = arr.get(num);
+            ArrayList<Node> info = arr.get(num);
             boolean flag = true;
             int to = 0;
             int cost = 0;
@@ -39,7 +39,7 @@ public class BOJ1167 {
                     flag = false;
                 } else {
                     cost = temp;
-                    info.add(new node(to, cost));
+                    info.add(new Node(to, cost));
                     flag = true;
                 }
             }
@@ -59,7 +59,7 @@ public class BOJ1167 {
 
     private static void dfs(int next, int sum) {
         for (int i = 0; i < arr.get(next).size(); i++) {
-            node temp = arr.get(next).get(i);
+            Node temp = arr.get(next).get(i);
             if(!visited[temp.to]){
                 visited[temp.to]=true;
                 dfs(temp.to,sum+temp.value);

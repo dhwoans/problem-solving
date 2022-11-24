@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
  */
 public class BOJ1738 {
     static int N,M;
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static int visit[];
     static final int INF = -987654321;
     static ArrayList<ArrayList<Integer>> order;
@@ -43,7 +43,7 @@ public class BOJ1738 {
             int to = Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
             
-            arr.get(from).add(new node(to,cost));
+            arr.get(from).add(new Node(to,cost));
         }
         map = new ArrayList<>();
         visit = new int[N+1];
@@ -73,7 +73,7 @@ public class BOJ1738 {
             flag = false;
 
             for (int j = 1; j < N+1; j++) {
-                for (node node : arr.get(j)) {
+                for (Node node : arr.get(j)) {
                     if(visit[node.to]<visit[j]+node.value){
                         visit[node.to]=visit[j]+node.value;
 
@@ -85,7 +85,7 @@ public class BOJ1738 {
         }
         if(flag){
             for (int i = 0; i < N + 1; i++) {
-                for (node node : arr.get(i)) {
+                for (Node node : arr.get(i)) {
                     if(visit[node.to]<visit[i]+node.value){
                         return false;
                     }

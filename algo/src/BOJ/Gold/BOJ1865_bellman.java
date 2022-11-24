@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 public class BOJ1865_bellman {
     static int N,M,W;
     static int[] visit;
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static final int INF= 987654321;
 
     public static void main(String[] args) throws IOException {
@@ -40,8 +40,8 @@ public class BOJ1865_bellman {
                 int to =Integer.parseInt(st.nextToken());
                 int cost =Integer.parseInt(st.nextToken());
 
-                arr.get(from).add(new node(to,cost));
-                arr.get(to).add(new node(from,cost));
+                arr.get(from).add(new Node(to,cost));
+                arr.get(to).add(new Node(from,cost));
             }
             //웜홀 넣기
             for (int j = 0; j < W; j++) {
@@ -50,7 +50,7 @@ public class BOJ1865_bellman {
                 int to =Integer.parseInt(st.nextToken());
                 int cost=-1*Integer.parseInt(st.nextToken());
 
-                arr.get(from).add(new node(to,cost));
+                arr.get(from).add(new Node(to,cost));
             }
             visit = new int[N+1];
            boolean flag = false;
@@ -75,7 +75,7 @@ public class BOJ1865_bellman {
             flag = false;
 
             for (int i = 1; i < N+1; i++) {
-                for(node n:arr.get(i)){
+                for(Node n:arr.get(i)){
                     if(visit[n.to]>visit[i]+n.value){
                         visit[n.to]=visit[i]+n.value;
                         flag = true;
@@ -87,7 +87,7 @@ public class BOJ1865_bellman {
         //음수 사이클 확인
         if(flag){
             for (int i = 1; i < N+1; i++) {
-                for (node n : arr.get(i)) {
+                for (Node n : arr.get(i)) {
                     if(visit[n.to]>visit[i]+n.value){
                         return true;
                     }

@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class BOJ14938 {
     static int n, m, r;
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static int[] visit;
 
     public static void main(String[] args) throws IOException {
@@ -44,8 +44,8 @@ public class BOJ14938 {
             int to = Integer.parseInt(st.nextToken());
             int value = Integer.parseInt(st.nextToken());
 
-            arr.get(from).add(new node(to, value));
-            arr.get(to).add(new node(from, value));
+            arr.get(from).add(new Node(to, value));
+            arr.get(to).add(new Node(from, value));
         }
         int max = 0;
         for (int i = 1; i < n + 1; i++) {
@@ -63,22 +63,22 @@ public class BOJ14938 {
     }
 
     private static void Dij(int start) {
-        PriorityQueue<node> pq = new PriorityQueue<>();
-        pq.add(new node(start, 0));
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        pq.add(new Node(start, 0));
 
         visit = new int[n + 1];
         Arrays.fill(visit, Integer.MAX_VALUE);
         visit[start] = 0;
         while (!pq.isEmpty()) {
-            node z = pq.poll();
+            Node z = pq.poll();
 
             if (z.value > visit[z.to]) continue;
 
             for (int i = 0; i < arr.get(z.to).size(); i++) {
-                node next = arr.get(z.to).get(i);
+                Node next = arr.get(z.to).get(i);
                 if (visit[next.to] >= visit[z.to] + next.value) {
                     visit[next.to] = visit[z.to] + next.value;
-                    pq.add(new node(next.to, visit[next.to]));
+                    pq.add(new Node(next.to, visit[next.to]));
                 }
             }
         }

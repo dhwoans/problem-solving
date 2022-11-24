@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
  */
 public class BOJ11657 {
     static int N,M;
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static long[] visit;
     static final int INF = 987654321;
 
@@ -37,7 +37,7 @@ public class BOJ11657 {
            int to = Integer.parseInt(st.nextToken());
            int cost =  Integer.parseInt(st.nextToken());
            
-           arr.get(from).add(new node(to,cost));
+           arr.get(from).add(new Node(to,cost));
         }
         visit = new long[N+1];
         if(bellman()){
@@ -64,7 +64,7 @@ public class BOJ11657 {
             flag = false;
 
             for (int j = 1; j < N+1; j++) {
-                for (node node : arr.get(j)) {
+                for (Node node : arr.get(j)) {
                     if(visit[j]==INF) break;
                     if(visit[node.to]>visit[j]+node.value){
                         visit[node.to]=visit[j]+node.value;
@@ -78,7 +78,7 @@ public class BOJ11657 {
         //음수 사이클 확인
         if(flag){
             for (int i = 1; i < N+1; i++) {
-                for (node node : arr.get(i)) {
+                for (Node node : arr.get(i)) {
                     if(visit[i]==INF) break;
                     if(visit[node.to]>visit[i]+node.value){
                         return true;

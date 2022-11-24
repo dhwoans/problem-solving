@@ -20,7 +20,7 @@ import java.util.StringTokenizer;
  */
 public class BOJ1753 {
     static int v, e, start;
-    static ArrayList<ArrayList<node>> arr;
+    static ArrayList<ArrayList<Node>> arr;
     static int[] visit;
 
     public static void main(String[] args) throws IOException {
@@ -41,7 +41,7 @@ public class BOJ1753 {
             int to= Integer.parseInt(st.nextToken());
             int value =Integer.parseInt(st.nextToken());
             
-            arr.get(from).add(new node(to,value));
+            arr.get(from).add(new Node(to,value));
         }
         Dij();
         StringBuilder sb = new StringBuilder();
@@ -56,24 +56,24 @@ public class BOJ1753 {
     }
 
     private static void Dij() {
-        PriorityQueue<node> pq = new PriorityQueue<>();
-        pq.add(new node(start,0));
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        pq.add(new Node(start,0));
 
         visit=new int[v+1];
         Arrays.fill(visit,Integer.MAX_VALUE);
         visit[start]=0;
 
         while(!pq.isEmpty()){
-            node z = pq.poll();
+            Node z = pq.poll();
 
             if(z.value>visit[z.to])continue;
 
 
             for (int i = 0; i < arr.get(z.to).size(); i++) {
-                node next=arr.get(z.to).get(i);
+                Node next=arr.get(z.to).get(i);
                 if(visit[next.to]>next.value+visit[z.to]){
                     visit[next.to]=next.value+visit[z.to];
-                    pq.add(new node(next.to,visit[next.to]));
+                    pq.add(new Node(next.to,visit[next.to]));
                 }
             }
         }

@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 
 public class BOJ13424 {
 
-    private static ArrayList<ArrayList<node>> arr;
+    private static ArrayList<ArrayList<Node>> arr;
     private static int[][] pos;
     private static int INF = 987654321;
     private static int[][] ints;
@@ -35,8 +35,8 @@ public class BOJ13424 {
                 int to = Integer.parseInt(st.nextToken());
                 int cost = Integer.parseInt(st.nextToken());
                 
-                arr.get(from).add(new node(to,cost));
-                arr.get(to).add(new node(from,cost));
+                arr.get(from).add(new Node(to,cost));
+                arr.get(to).add(new Node(from,cost));
             }
 
             int friends = Integer.parseInt(br.readLine());
@@ -66,23 +66,23 @@ public class BOJ13424 {
     }
 
     private static void dij(int order,int start) {
-        PriorityQueue<node> que = new PriorityQueue<>();
-        que.add(new node(start,0));
+        PriorityQueue<Node> que = new PriorityQueue<>();
+        que.add(new Node(start,0));
         for (int i = 1; i < pos[order].length; i++) {
             pos[order][i]=INF;
         }
         pos[order][start]=0;
 
         while (!que.isEmpty()){
-            node z = que.poll();
+            Node z = que.poll();
 
             if(pos[order][z.to]<z.value)continue;
 
             for (int i = 0; i < arr.get(z.to).size(); i++) {
-                node next = arr.get(z.to).get(i);
+                Node next = arr.get(z.to).get(i);
                 if(pos[order][next.to]>pos[order][z.to]+next.value){
                     pos[order][next.to]=pos[order][z.to]+next.value;
-                    que.add(new node(next.to,pos[order][z.to]+next.value));
+                    que.add(new Node(next.to,pos[order][z.to]+next.value));
                 }
             }
         }
