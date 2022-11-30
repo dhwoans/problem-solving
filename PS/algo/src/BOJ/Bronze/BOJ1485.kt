@@ -1,4 +1,4 @@
-package BOJ.bronze
+package BOJ.Bronze
 
 import kotlin.math.pow
 

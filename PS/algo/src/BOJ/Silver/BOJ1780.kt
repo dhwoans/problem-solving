@@ -1,6 +1,6 @@
 package BOJ.Silver
 
-lateinit var arr:Array<IntArray>
+private lateinit var arr:Array<IntArray>
 private var count = IntArray(3)
 fun main() {
     val n = readln().toInt()
