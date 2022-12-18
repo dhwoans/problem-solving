@@ -23,7 +23,8 @@ fun main() {
         }
     }
     //방문하지 않은 노드에 대해 DFS
-    for (i in 0 .. n) {
+//    for (i in 1 .. n){   어떤 노드로 시작 해도 상관없다.
+    for (i in n downTo 1) {
         if (visited[i]) continue
         dfs(i)
     }
