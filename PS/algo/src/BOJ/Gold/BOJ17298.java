@@ -12,25 +12,30 @@ public class BOJ17298 {
         int n = Integer.parseInt(br.readLine());
         int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         Stack<Integer> stack = new Stack<>();
-        Stack<Integer> answer = new Stack<>();
+        var ans = new int[arr.length];
+        Arrays.fill(ans,-1);
         StringBuilder sb = new StringBuilder();
 
 
-        for (int i = n - 1; i >= 0; i--) {
-            while (!stack.isEmpty() && arr[i] >= stack.peek()) {
-                stack.pop();
+        for (int i = 0; i < n; i++) {
+            if(stack.isEmpty()||arr[stack.peek()]>=arr[i]){
+                stack.add(i);
+            }else if(arr[stack.peek()]<arr[i]){
+                while(!stack.isEmpty()){
+                    if(arr[stack.peek()]<arr[i]){
+                        ans[stack.peek()]=arr[i];
+                        stack.pop();
+                    }else{
+                        break;
+                    }
+                }
+                stack.add(i);
             }
-            if (stack.isEmpty()) {
-                answer.add(-1);
-            } else {
-                answer.add(stack.peek());
-            }
-            stack.add(arr[i]);
         }
-        while(!answer.isEmpty()){
-            sb.append(answer.pop()).append(" ");
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(ans[i]).append(" ");
         }
-        System.out.println(sb);
+            System.out.print(sb);
     }
 }
 
