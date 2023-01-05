@@ -1,8 +1,18 @@
 package BOJ.bronze
 
-import java.io.BufferedReader
 
-fun main() = with(BufferedReader(System.`in`.bufferedReader())) {
-    val n = readLine().toInt(8).toString(2)
-    println(n)
+fun main() {
+    val str = readln()
+    val sb = StringBuilder()
+
+    str.forEachIndexed{ index,it->
+        val temp = (it-'0').toString(2)
+        if(index==0){
+            sb.append(temp)
+        }else{
+            sb.append("0".repeat(3-temp.length)).append(temp)
+        }
+    }
+    println(sb)
 }
+
