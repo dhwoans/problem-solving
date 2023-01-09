@@ -1,68 +1,38 @@
-package BOJ.Silver
-
-import java.lang.Integer.min
-
-private lateinit var visited: BooleanArray
-private lateinit var arr: ArrayList<ArrayList<Int>>
-private var min = Int.MAX_VALUE
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 fun main() {
-    val sb = StringBuilder()
     repeat(readln().toInt()) {
-        min = Int.MAX_VALUE
         val n = readln().toInt()
-        arr = ArrayList<ArrayList<Int>>().apply {
-            repeat(n + 1) {
-                this.add(ArrayList<Int>())
+        val arr = ArrayList<HashSet<Int>>()
+        repeat(n) { s ->
+            val temp = HashSet<Int>()
+            temp.add(s)
+            readln().split(" ").map { it.toInt() - 1 }.forEachIndexed { index, i ->
+                if (index == 0) {
+                    return@forEachIndexed
+                } else {
+                    temp.add(i)
+                }
             }
+            arr.add(temp)
         }
-        repeat(n) {
-            val temp = readln().split(" ").map(String::toInt).toIntArray()
-            for (i in 1..temp[0]) {
-                arr[it + 1].add(temp[i])
+        var count = 0
+        while (true) {
+            if(arr.size==0)break
+            arr.sortWith(compareBy { -it.size })
+            if (arr[0].isEmpty()) break
+            count++
+            for (i in 1 until arr.size) {
+                for (j in arr[0]) {
+                    if (arr[i].contains(j)) arr[i].remove(j)
+                }
+
             }
+
+            arr.removeAt(0)
         }
-        for (i in 1..n) {
-            visited = BooleanArray(n)
-            visited[i-1]=true
-            permutation(0, n, 1, i)
-        }
-        sb.appendLine(min)
+        println(count)
     }
-    println(sb)
-}
-
-private fun permutation(cnt: Int, n: Int, count: Int, start: Int) {
-    if (count > min) return
-    if (check()) {
-        min = min(min, count-1)
-        return
-    }
-    if (cnt == n) {
-        min = min(min, count)
-        return
-    }
-    for (i in start+1..n) {
-        visited[i - 1] = true
-        add(i)
-        permutation(cnt + 1, n, count + 1, 1)
-        visited[i - 1] = false
-        clean(i)
-    }
-}
-
-private fun clean(i: Int) {
-    for (i in arr[i]) {
-        visited[i - 1] = false
-    }
-}
-
-private fun add(i: Int) {
-    for (i in arr[i]) {
-        visited[i - 1] = true
-    }
-}
-
-private fun check(): Boolean {
-    return visited.count { !it } == 0
 }
