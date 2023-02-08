@@ -63,7 +63,7 @@ fun main() {
     }
     println(sb)
 }
-fun dfs(x: Int, y: Int, cnt: Int): Int {
+private fun dfs(x: Int, y: Int, cnt: Int): Int {
     var result = 1
     val que = LinkedList<IntArray>()
     que.add(intArrayOf(x,y))
