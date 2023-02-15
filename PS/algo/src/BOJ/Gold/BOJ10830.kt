@@ -19,7 +19,7 @@ fun main() {
     }
 }
 
-private fun pow(a: Array<IntArray>, exponant: Long): Array<IntArray> {
+private fun pow(a: Int, exponant: Long): Array<IntArray> {
     if (exponant == 1L) {
         return a
     }
