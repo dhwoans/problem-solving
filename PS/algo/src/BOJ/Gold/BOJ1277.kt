@@ -13,6 +13,7 @@ fun main() {
             this.add(ArrayList<Int>())
         }
     }
+    val temp= IntArray(3)
 
     //발전소 위치
     repeat(n){
